@@ -24,6 +24,11 @@ export const Container = styled.div`
         
         ul{
             list-style: none;
+            li{
+                outline:1px solid black;
+                padding:5px;
+                border-radius: 5px;
+            }
         }
     }
 
