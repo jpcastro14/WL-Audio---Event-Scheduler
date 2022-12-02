@@ -1,20 +1,55 @@
 import { Container } from "./styles";
+import { useState } from "react";
 import React from "react";
 
-class ClassComp extends React.Component{
-    render(){
-        return (
-            <Container>
-                <p>Componente De Classe</p>
+function Seccomp (){
 
-                <form>
-                    <input type="text" />
-                    <input type="number" name="" id="" />
-                </form>
+    const [users,Setusers] = useState({
+        name:'',
+        email:''
+    })
 
-            </Container>
-        )
+    const [userdata,Setuserdata] = useState([])
+
+
+    const HandleChange = (event)=>{
+
+        const {name,value} = event.target
+
+        Setusers((prev)=>{
+            return {...prev, [name]: value}
+        })
+
+        console.log(users);
     }
+
+    const Handlesubmit = (e)=>{
+
+        e.preventDefault();
+
+        Setuserdata((prev)=>{
+            return [...prev,users]
+        })
+        console.log(userdata);
+    }
+
+
+    return(
+        <Container>
+            <form onSubmit={Handlesubmit}>
+                <input type="text" name="username" onChange={HandleChange} />
+                <input type="email" name="email" onChange={HandleChange}  />
+                <input type="submit" />
+            </form>
+            <div>
+                <ul>
+                    <li>
+                        teste
+                    </li>
+                </ul>
+            </div>
+        </Container>
+    )
 }
 
-export default ClassComp
+export default Seccomp

@@ -10,7 +10,7 @@ function Funcomp (){
     const handleChange = (e) =>{
         const value = e.target.value;
         setTask(value);
-        console.log(task);
+        
     }   
 
     const addtask = (e) =>{
@@ -28,7 +28,7 @@ function Funcomp (){
         <Container>
             <p>Componente Funcional</p>
             <form onSubmit={addtask} > 
-                 <input type="text" name="taskname" onChange={handleChange}/>
+                 <input type="text" name="task" onChange={handleChange}/>
                 <input type="submit" name="" value="Criar" />
             </form>
             <ul>
