@@ -3,61 +3,52 @@ import { useState } from "react";
 import axios from "axios";
 
 function EventForm() {
+  const [event, SetEvent] = useState({
+    Evname: "",
+    Evdate: "",
+    Evlocation: "",
+    Evobs: "",
+  });
 
-    const [event,SetEvent] = useState({
+  const [Evlist, Setevlist] = useState([]);
 
-        Evname:'',
-        Evdate:'',
-        Evlocation:'',
-        Evobs:''
+  const HandleChange = (e) => {
+    const { name, value } = e.target;
+    SetEvent((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
 
-    })
+  const Handlesubmit = (e) => {
+    e.preventDefault();
+    Setevlist((prev) => {
+      return [...prev, event];
+    });
+    console.log(Evlist);
+    axios
+      .post("https://jsonplaceholder.typicode.com/posts", Evlist)
+      .then((response) => console.log(response));
 
-    const [Evlist,Setevlist] = useState([])
-
-    const HandleChange = (e)=>{
-
-        const {name,value} = e.target
-        SetEvent((prev)=>{
-            return{...prev, [name]:value}
-        })
-
-        /* console.log(event); */
-    }
-
-    const Handlesubmit = (e) =>{
-        e.preventDefault()
-        Setevlist((prev)=>{
-            return[...prev, event]
-        })
-        console.log(Evlist);
-        axios.post("https://jsonplaceholder.typicode.com/posts",Evlist)
-        .then(response => console.log(response))
-
-        SetEvent({
-            Evname:'',
-            Evdate:'',
-            Evlocation:'',
-            Evobs:''
-        })
-        
-
-
-    }
+    SetEvent({
+      Evname: "",
+      Evdate: "",
+      Evlocation: "",
+      Evobs: "",
+    });
+  };
 
   return (
     <Container>
       <p>Criar novo evento</p>
       <div>
-
         <form onSubmit={Handlesubmit}>
           <input
-           type="text"
-           name="Evname"
-           placeholder="Nome Do Evento"
-           onChange={HandleChange}
-           value={event.Evname}
-         />
+            type="text"
+            name="Evname"
+            placeholder="Nome Do Evento"
+            onChange={HandleChange}
+            value={event.Evname}
+          />
 
           <input
             type="number"

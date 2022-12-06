@@ -1,21 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin: 0 100px;
+  margin: 0 auto;
   padding: 30px;
   font-size: 40px;
+  max-width: 980px;
   
-
   div {
     display: flex;
-    max-width: 1250px;
     border: solid 5px #f93838;
-    border-radius: 0px;
     border-top: none;
     border-bottom: none;
     border-right: none;
     padding: 10px;
-    margin: 0 auto;
   }
   form {
     display: flex;

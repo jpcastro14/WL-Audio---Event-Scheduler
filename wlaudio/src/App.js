@@ -1,4 +1,5 @@
 import Topnav from './components/Topnav';
+import MainCont from './components/MainCont';
 import EventForm from './components/EventForm'
 import EventList from './components/EventList'
  
@@ -9,8 +10,10 @@ function App() {
   return (
     <>
       <Topnav />
+      
       <EventForm />
       <EventList />
+      
     </>
   );
 }
