@@ -1,15 +1,16 @@
-import Funcomp from './components/Funcomp';
-import ClassComp from './components/ClassComp';
+import Topnav from './components/Topnav';
+import EventForm from './components/EventForm'
+import EventList from './components/EventList'
+ 
+
 import './App.css';
 
 function App() {
   return (
     <>
-    <div className='MainDiv'>
-    <h4>Aqui ficarão exemplos de componentes funcionais e de classe</h4>
-    <Funcomp></Funcomp>
-    <ClassComp></ClassComp>
-   </div>
+      <Topnav />
+      <EventForm />
+      <EventList />
     </>
   );
 }
