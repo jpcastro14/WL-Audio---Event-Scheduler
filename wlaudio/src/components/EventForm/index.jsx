@@ -21,12 +21,14 @@ function EventForm() {
 
   const Handlesubmit = (e) => {
     e.preventDefault();
-    Setevlist((prev) => {
-      return [...prev, event];
-    });
+
+    Setevlist((prev)=>{
+      return {...prev,event}
+    })
+
     console.log(Evlist);
     axios
-      .post("https://jsonplaceholder.typicode.com/posts", Evlist)
+      .post("http://localhost:4000/posts", Evlist)
       .then((response) => console.log(response));
 
     SetEvent({

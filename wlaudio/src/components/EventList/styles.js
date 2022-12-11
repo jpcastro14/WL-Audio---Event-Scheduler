@@ -4,7 +4,7 @@ export const Container = styled.div`
   height: 200px;
   max-width: 980px;
   margin: 70px auto;
-  font-family: poppins;
+  font-family: 'Poppins', sans-serif;
   font-weight: 300;
   p {
     font-size: 30px;

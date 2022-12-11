@@ -1,0 +1,16 @@
+{
+    "posts": [
+      {
+         "id": 1,
+         "title": "Opalão",
+         "author": "typicode" 
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "body": "Comentário nefasto",
+        "postId": 1 }
+    ],
+    "profile": { "name": "typicode" }
+  }

@@ -10,7 +10,7 @@ function EventList() {
           <div id="datecont">
             <h2>18/01</h2>
           </div>
-          <p>Quintal da dona Graça </p>
+          <p>Barril 68</p>
           <FaExpandArrowsAlt />
         </li>
       </ul>
