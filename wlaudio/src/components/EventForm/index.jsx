@@ -2,6 +2,7 @@ import { Container } from "./styles";
 import { useState } from "react";
 import axios from "axios";
 
+
 function EventForm() {
   const [event, SetEvent] = useState({
     Evname: "",
@@ -10,25 +11,17 @@ function EventForm() {
     Evobs: "",
   });
 
-  const [Evlist, Setevlist] = useState([]);
-
   const HandleChange = (e) => {
     const { name, value } = e.target;
-    SetEvent((prev) => {
-      return { ...prev, [name]: value };
+    SetEvent((event) => {
+      return { ...event, [name]: value };
     });
   };
 
   const Handlesubmit = (e) => {
     e.preventDefault();
-
-    Setevlist((prev)=>{
-      return {...prev,event}
-    })
-
-    console.log(Evlist);
     axios
-      .post("http://localhost:4000/posts", Evlist)
+      .post("http://localhost:4000/posts", event)
       .then((response) => console.log(response));
 
     SetEvent({
@@ -53,7 +46,7 @@ function EventForm() {
           />
 
           <input
-            type="number"
+            type="date"
             name="Evdate"
             placeholder="Dia Do evento"
             onChange={HandleChange}
@@ -74,7 +67,9 @@ function EventForm() {
             placeholder="Observações"
             onChange={HandleChange}
             value={event.Evobs}
-          />
+            />
+        
+         
 
           <input type="submit" id="Evsubmit" value="Criar evento" />
         </form>

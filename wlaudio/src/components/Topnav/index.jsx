@@ -1,5 +1,7 @@
-import { Container } from "./styles";
 import { FaSistrix } from "react-icons/fa";
+import { Container } from "./styles";
+import { AuthContext } from "../../providers/auth";
+import React from "react";
 
 function Topnav() {
   return (
@@ -10,8 +12,7 @@ function Topnav() {
         <a>
           <FaSistrix />
         </a>
-        <a>Materiais</a>
-        <a>Licitações</a>
+        <a></a>
       </div>
     </Container>
   );

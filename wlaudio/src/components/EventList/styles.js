@@ -22,6 +22,7 @@ export const Container = styled.div`
       justify-content: center;
       border-radius: 5px 0 0 5px;
       position: relative;
+      font-size: 11px;
     }
     li {
       border: #cecece 1px solid;
