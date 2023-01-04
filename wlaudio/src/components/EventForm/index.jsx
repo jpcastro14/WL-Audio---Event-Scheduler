@@ -22,7 +22,8 @@ function EventForm() {
     e.preventDefault();
     axios
       .post("http://localhost:4000/posts", event)
-      .then((response) => console.log(response));
+      .then((response) => console.log(response))
+      .then(alert( 'evento criado com sucesso!'))
 
     SetEvent({
       Evname: "",

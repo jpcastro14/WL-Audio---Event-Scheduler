@@ -10,7 +10,7 @@ function App() {
       <AuthProvider>
         <Topnav />
         <EventForm />
-        <EventList />
+        <EventList min={100} max={1000} />
       </AuthProvider>
     </>
   );

@@ -6,6 +6,8 @@ import React from "react";
 function EventList() {
   const { Evlist } = React.useContext(AuthContext);
 
+  console.log(Evlist);
+
   return (
     <Container>
       <p>Eventos em Andamento</p>
