@@ -2,7 +2,6 @@ import { Container } from "./styles";
 import { useState } from "react";
 import axios from "axios";
 
-
 function EventForm() {
   const [event, SetEvent] = useState({
     Evname: "",
@@ -20,10 +19,8 @@ function EventForm() {
 
   const Handlesubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:4000/posts", event)
-      .then((response) => console.log(response))
-      .then(alert( 'evento criado com sucesso!'))
+    axios.post("http://localhost:4000/posts", event)
+    .then((response)=>console.log(response.status));
 
     SetEvent({
       Evname: "",
@@ -68,9 +65,7 @@ function EventForm() {
             placeholder="Observações"
             onChange={HandleChange}
             value={event.Evobs}
-            />
-        
-         
+          />
 
           <input type="submit" id="Evsubmit" value="Criar evento" />
         </form>

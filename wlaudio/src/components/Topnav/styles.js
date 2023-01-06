@@ -9,21 +9,25 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     border-bottom: 2px solid black;
-    a{
-        text-decoration: none;
-        font-family: poppins;
-        color: black;
-        font-size: 20px;
-    }
-    div{
+    ul{
+        list-style: none;
         display: flex;
-        justify-content: space-between;
-        gap: 40px;
-        svg{
-            height: 25px;
-            width: 25px;
+        gap: 20px;
+        font-size: 20px;
+        text-decoration: none;
+        a{
+            text-decoration: none;
+            color: black;
+            transition: all ease-in-out 0.2s;
         }
-        
+        a:hover{
+            color: red;
+        }
+    }
+    div[id="div_li"]{
+        display: flex;
+        justify-content: flex-end;
+        width: 80%;
     }
     
 
