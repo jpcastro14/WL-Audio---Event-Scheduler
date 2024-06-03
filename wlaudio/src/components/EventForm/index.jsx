@@ -10,6 +10,8 @@ function EventForm() {
     Evobs: "",
   });
 
+  
+
   const HandleChange = (e) => {
     const { name, value } = e.target;
     SetEvent((event) => {
@@ -28,12 +30,15 @@ function EventForm() {
       Evlocation: "",
       Evobs: "",
     });
+
+    
   };
 
   return (
     <Container>
       <p>Criar novo evento</p>
       <div>
+        
         <form onSubmit={Handlesubmit}>
           <input
             type="text"
@@ -66,8 +71,7 @@ function EventForm() {
             onChange={HandleChange}
             value={event.Evobs}
           />
-
-          <input type="submit" id="Evsubmit" value="Criar evento" />
+            <input type="submit" id="Evsubmit" value="Criar evento" />
         </form>
       </div>
     </Container>

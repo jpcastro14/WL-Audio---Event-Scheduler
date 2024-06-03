@@ -5,14 +5,15 @@ export const Container = styled.div`
     background:linear-gradient(90deg, rgba(249,56,56,1) 0%, rgba(255,233,0,0.8645658092338497) 100%);
     padding:20px 100px;
     display: flex;
-    flex:0 0 700px;
+    flex:0 0 auto;
+    min-width: 500px;
     align-items: center;
     justify-content: space-between;
     border-bottom: 2px solid black;
     ul{
         list-style: none;
         display: flex;
-        gap: 20px;
+        gap: 30px;
         font-size: 20px;
         text-decoration: none;
         a{

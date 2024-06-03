@@ -10,7 +10,7 @@ export const AuthProvider = (props) => {
   useEffect(() => {
     axios.get("http://localhost:4000/posts")
     .then((response)=> Setevlist(response.data))
-
+    
     .catch(function (error) {
       if (error.response) {
         alert('Algo deu errado')

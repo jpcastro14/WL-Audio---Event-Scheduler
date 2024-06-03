@@ -1,10 +1,13 @@
+import { AuthProvider } from "./providers/auth";
+import { AuthContext } from "./providers/auth";
 import Topnav from "./components/Topnav";
 import EventForm from "./components/EventForm";
-import "./App.css";
-import { AuthProvider } from "./providers/auth";
+import React from "react";
 
+import "./App.css";
 
 function App() {
+
   return (
     <>
       <AuthProvider>

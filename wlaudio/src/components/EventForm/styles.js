@@ -14,6 +14,18 @@ export const Container = styled.div`
     border-right: none;
     padding: 10px;
   }
+  button[type="test"]{
+    background-color: #f93838;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    width: 25%;
+    font-size: large;
+    transition: ease-in-out 200ms;
+    &:hover{
+      filter: opacity(80%);
+    }
+  }
   form {
     display: flex;
     flex-wrap: wrap;
@@ -27,6 +39,7 @@ export const Container = styled.div`
     border: 1px solid #ccc;
     margin: 5px;
     flex-grow: 1;
+    padding-left: 15px;
   }
   input[id="Evobs"] {
     width: 100%;
