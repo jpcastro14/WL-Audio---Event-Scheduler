@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   height: 40px;
@@ -30,20 +31,27 @@ export const Container = styled.div`
       color: red;
     }
   }
-  div[id="div_li"] {
+  @media (max-width: 412px) {
+    width: 100%;
     display: flex;
-    justify-content: flex-end;
-    @media (max-width: 384px) {
-      color: white;
-    }
-  }
-  @media (max-width: 385px) {
-    width: 384px;
-    display: flex;
+    background: black;
     justify-content: space-around;
     height: 60px;
     padding: 5px 0;
-    background: black;
+    color: white;
+  }
+`;
+
+export const DivLinks = styled.li`
+  display: flex;
+  justify-content: flex-end;
+  GoLink {
+    color: white;
+  }
+`;
+
+export const GoLink = styled(Link)`
+  @media (max-width: 412px) {
     color: white;
   }
 `;

@@ -1,21 +1,21 @@
-import { Container } from "./styles";
+import { Container, DivLinks, GoLink } from "./styles";
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 function Topnav() {
   return (
     <Container>
       <p>WL Audio Pro</p>
-      <div id="div_li">
+      <DivLinks id="div_li">
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <GoLink to="/">Home</GoLink>
           </li>
           <li>
-            <Link to="/list">Listagem</Link>
+            <GoLink to="/list">Listagem</GoLink>
           </li>
         </ul>
-      </div>
+      </DivLinks>
     </Container>
   );
 }

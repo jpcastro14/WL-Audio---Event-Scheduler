@@ -1,4 +1,6 @@
-import { Container } from "./styles";
+import { Container, FormDiv, Goback, ButtonContainer } from "./styles";
+import PInput from "./Input";
+import arrow from "../../assets/arrow.svg";
 import { useState } from "react";
 import React from "react";
 import axios from "axios";
@@ -39,8 +41,10 @@ function EventForm() {
 
   return (
     <Container>
+      <Goback src={arrow} />
       <Titlediv>Novo Evento</Titlediv>
-      <div>
+      <FormDiv>
+        {/* <PInput /> */}
         <form onSubmit={Handlesubmit}>
           <input
             type="text"
@@ -72,9 +76,12 @@ function EventForm() {
             onChange={HandleChange}
             value={event.Evobs}
           />
-          <input type="submit" id="Evsubmit" value="Criar evento" />
+          <ButtonContainer>
+            <input type="submit" id="Evsubmit" value="Criar evento" />
+            <input type="submit" id="Evsubmit" value="Cancelar" />
+          </ButtonContainer>
         </form>
-      </div>
+      </FormDiv>
     </Container>
   );
 }

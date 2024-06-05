@@ -1,27 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 30px;
   font-size: 40px;
-  @media (max-width: 385px) {
-    padding: 5px;
-    width: 100%;
-    font-size: 25px;
+  @media (max-width: 412px) {
+    padding: 0;
     text-align: left;
-    margin-left: 5px;
-    background-color: white;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px;
-  }
-  div {
-    display: flex;
-    /* border: solid 5px #f93838; */
-    border-top: none;
-    border-bottom: none;
-    border-right: none;
-    padding: 10px;
-    @media (max-width: 384px) {
-    }
+    background: white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 15px;
   }
   button[type="test"] {
     background-color: #f93838;
@@ -39,11 +26,17 @@ export const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    @media (max-width: 412px) {
+      background-color: white;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      padding: 0;
+    }
   }
   input {
     font-family: poppins;
-    font-size: 16px;
-    height: 30px;
+    font-size: 15px;
+    height: 44px;
     border-radius: 5px;
     border: 1px solid #ccc;
     margin: 5px;
@@ -61,10 +54,43 @@ export const Container = styled.div`
 `;
 
 export const Titlediv = styled.div`
-  width: 80%;
+  width: 100%;
   height: 30px;
   margin-top: 50px;
   font-family: poppins;
   font-size: 20px;
-  margin-left: 15px;
+  background-color: white;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  @media (max-width: 412px) {
+    margin-top: 0;
+    padding-left: 15px;
+    width: auto;
+    margin-bottom: 40px;
+  }
+`;
+
+export const FormDiv = styled.div`
+  display: flex;
+  /* border: solid 5px #f93838; */
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  @media (max-width: 412px) {
+    background-color: white;
+  }
+`;
+
+export const Goback = styled.img`
+  height: 50px;
+  width: 50px;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  input [type="submit"] {
+    display: flex;
+  }
 `;
