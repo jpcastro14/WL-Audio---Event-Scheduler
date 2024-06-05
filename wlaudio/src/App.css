@@ -6,10 +6,13 @@
   height: 40vmin;
   pointer-events: none;
 }
-
-
+*{
+  margin: 0;
+  padding: 0;
+}
 body{
-  min-width: 700px;
+  margin: 0;
+  padding: 0;
 }
 
 h4 {

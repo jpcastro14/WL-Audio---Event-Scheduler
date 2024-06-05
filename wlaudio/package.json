@@ -14,7 +14,7 @@
     "react-icons": "^4.7.1",
     "react-router": "^6.6.1",
     "react-router-dom": "^6.6.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^3.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -22,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "db4": "json-server --watch db.json -p 4000",
+    "db4": "json-server --host 172.16.235.128 --watch db.json -p 4000",
     "db5": "json-server --watch db.json -p 5000"
   },
   "eslintConfig": {

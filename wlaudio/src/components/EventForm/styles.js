@@ -1,20 +1,29 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin: 0 auto;
   padding: 30px;
   font-size: 40px;
-  max-width: 980px;
-  
+  @media (max-width: 385px) {
+    padding: 5px;
+    width: 100%;
+    font-size: 25px;
+    text-align: left;
+    margin-left: 5px;
+    background-color: white;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+  }
   div {
     display: flex;
-    border: solid 5px #f93838;
+    /* border: solid 5px #f93838; */
     border-top: none;
     border-bottom: none;
     border-right: none;
     padding: 10px;
+    @media (max-width: 384px) {
+    }
   }
-  button[type="test"]{
+  button[type="test"] {
     background-color: #f93838;
     border: none;
     padding: 15px;
@@ -22,7 +31,7 @@ export const Container = styled.div`
     width: 25%;
     font-size: large;
     transition: ease-in-out 200ms;
-    &:hover{
+    &:hover {
       filter: opacity(80%);
     }
   }
@@ -46,7 +55,16 @@ export const Container = styled.div`
   }
   input[id="Evsubmit"] {
     flex-grow: 1;
-    background-color:#f93838;
+    background-color: #f93838;
     height: 35px;
   }
+`;
+
+export const Titlediv = styled.div`
+  width: 80%;
+  height: 30px;
+  margin-top: 50px;
+  font-family: poppins;
+  font-size: 20px;
+  margin-left: 15px;
 `;

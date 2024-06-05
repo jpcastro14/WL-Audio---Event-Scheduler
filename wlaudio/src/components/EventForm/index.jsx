@@ -1,16 +1,20 @@
 import { Container } from "./styles";
 import { useState } from "react";
+import React from "react";
 import axios from "axios";
+import { useNavigate } from "react-router";
+import { Titlediv } from "./styles";
 
 function EventForm() {
+  const navigate = useNavigate();
+  const posthost = "http://172.16.235.128:3000/posts";
+
   const [event, SetEvent] = useState({
     Evname: "",
     Evdate: "",
     Evlocation: "",
     Evobs: "",
   });
-
-  
 
   const HandleChange = (e) => {
     const { name, value } = e.target;
@@ -21,24 +25,22 @@ function EventForm() {
 
   const Handlesubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:4000/posts", event)
-    .then((response)=>console.log(response.status));
-
+    axios
+      .post(posthost, event)
+      .then((response) => console.log(response.status));
+    navigate("/list");
     SetEvent({
       Evname: "",
       Evdate: "",
       Evlocation: "",
       Evobs: "",
     });
-
-    
   };
 
   return (
     <Container>
-      <p>Criar novo evento</p>
+      <Titlediv>Novo Evento</Titlediv>
       <div>
-        
         <form onSubmit={Handlesubmit}>
           <input
             type="text"
@@ -47,7 +49,6 @@ function EventForm() {
             onChange={HandleChange}
             value={event.Evname}
           />
-
           <input
             type="date"
             name="Evdate"
@@ -71,7 +72,7 @@ function EventForm() {
             onChange={HandleChange}
             value={event.Evobs}
           />
-            <input type="submit" id="Evsubmit" value="Criar evento" />
+          <input type="submit" id="Evsubmit" value="Criar evento" />
         </form>
       </div>
     </Container>

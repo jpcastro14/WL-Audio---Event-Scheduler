@@ -10,7 +10,7 @@ function EventList() {
   const { Evlist } = React.useContext(AuthContext);
 
   function deleteItem(id) {
-    axios.delete(`http://localhost:4000/posts/${id}`).then((resp) => {
+    axios.delete(`http://172.16.255.255:4000/posts/${id}`).then((resp) => {
       console.log(resp);
     });
   }
