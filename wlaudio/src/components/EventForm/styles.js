@@ -33,24 +33,6 @@ export const Container = styled.div`
       padding: 0;
     }
   }
-  input {
-    font-family: poppins;
-    font-size: 15px;
-    height: 44px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin: 5px;
-    flex-grow: 1;
-    padding-left: 15px;
-  }
-  input[id="Evobs"] {
-    width: 100%;
-  }
-  input[id="Evsubmit"] {
-    flex-grow: 1;
-    background-color: #f93838;
-    height: 35px;
-  }
 `;
 
 export const Titlediv = styled.div`
@@ -90,7 +72,26 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  input [type="submit"] {
-    display: flex;
-  }
+  align-items: center;
+  gap: 10px;
+`;
+
+export const SubmitButton = styled.input`
+  background-color: #73c578;
+  width: 100%;
+  border: none;
+  height: 44px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-family: poppins;
+`;
+
+export const CancelButton = styled.input`
+  background-color: #dd1c1a;
+  font-family: poppins;
+  width: 100%;
+  border: none;
+  height: 44px;
+  border-radius: 5px;
+  font-size: 20px;
 `;

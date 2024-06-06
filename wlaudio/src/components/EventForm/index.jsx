@@ -1,4 +1,11 @@
-import { Container, FormDiv, Goback, ButtonContainer } from "./styles";
+import {
+  Container,
+  FormDiv,
+  Goback,
+  ButtonContainer,
+  SubmitButton,
+  CancelButton,
+} from "./styles";
 import PInput from "./Input";
 import arrow from "../../assets/arrow.svg";
 import { useState } from "react";
@@ -14,8 +21,9 @@ function EventForm() {
   const [event, SetEvent] = useState({
     Evname: "",
     Evdate: "",
-    Evlocation: "",
-    Evobs: "",
+    Evleader: "",
+    Evaudiotechnician: "",
+    Evlighttechnician: "",
   });
 
   const HandleChange = (e) => {
@@ -25,17 +33,29 @@ function EventForm() {
     });
   };
 
+  const HandleClear = () => {
+    SetEvent({
+      Evname: "",
+      Evdate: "",
+      Evleader: "",
+      Evaudiotechnician: "",
+      Evlighttechnician: "",
+    });
+  };
+
   const Handlesubmit = (e) => {
     e.preventDefault();
-    axios
+    /* axios
       .post(posthost, event)
-      .then((response) => console.log(response.status));
+      .then((response) => console.log(response.status)); */
+    console.log(event);
     navigate("/list");
     SetEvent({
       Evname: "",
       Evdate: "",
-      Evlocation: "",
-      Evobs: "",
+      Evleader: "",
+      Evaudiotechnician: "",
+      Evlighttechnician: "",
     });
   };
 
@@ -44,41 +64,50 @@ function EventForm() {
       <Goback src={arrow} />
       <Titlediv>Novo Evento</Titlediv>
       <FormDiv>
-        {/* <PInput /> */}
         <form onSubmit={Handlesubmit}>
-          <input
+          <PInput
             type="text"
+            text="Nome do Evento"
             name="Evname"
-            placeholder="Nome Do Evento"
             onChange={HandleChange}
             value={event.Evname}
           />
-          <input
-            type="date"
+          <PInput
+            type="text"
+            text="Data"
             name="Evdate"
-            placeholder="Dia Do evento"
             onChange={HandleChange}
             value={event.Evdate}
           />
-
-          <input
+          <PInput
             type="text"
-            name="Evlocation"
-            placeholder="Local Do evento"
+            text="Responsável"
+            name="Evleader"
             onChange={HandleChange}
-            value={event.Evlocation}
+            value={event.Evleader}
           />
-
-          <input
+          <PInput
             type="text"
-            name="Evobs"
-            placeholder="Observações"
+            text="Técnico de som"
+            name="Evaudiotechnician"
             onChange={HandleChange}
-            value={event.Evobs}
+            value={event.Evaudiotechnician}
+          />
+          <PInput
+            type="text"
+            text="Técnico de Iluminação"
+            name="Evlighttechnician"
+            onChange={HandleChange}
+            value={event.Evlighttechnician}
           />
           <ButtonContainer>
-            <input type="submit" id="Evsubmit" value="Criar evento" />
-            <input type="submit" id="Evsubmit" value="Cancelar" />
+            <SubmitButton type="submit" id="Evsubmit" />
+            <CancelButton
+              type="reset"
+              id="Evsubmit"
+              value="Teste"
+              onClick={HandleClear}
+            />
           </ButtonContainer>
         </form>
       </FormDiv>
