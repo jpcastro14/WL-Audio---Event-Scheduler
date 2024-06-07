@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "db4": "json-server --host 172.16.235.128 --watch db.json -p 4000",
+    "db4": "json-server --watch db.json -p 4000",
     "db5": "json-server --watch db.json -p 5000"
   },
   "eslintConfig": {

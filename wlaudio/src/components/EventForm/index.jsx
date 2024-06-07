@@ -45,9 +45,9 @@ function EventForm() {
 
   const Handlesubmit = (e) => {
     e.preventDefault();
-    /* axios
-      .post(posthost, event)
-      .then((response) => console.log(response.status)); */
+    axios
+      .post("http://localhost:4000/posts", event)
+      .then((response) => console.log(response.status));
     console.log(event);
     navigate("/list");
     SetEvent({
