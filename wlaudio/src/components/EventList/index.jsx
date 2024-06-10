@@ -1,7 +1,18 @@
-import { Container } from "./styles";
+import {
+  Container,
+  ListItem,
+  ListHeader,
+  OverList,
+  Evdate,
+  Evname,
+  ButtonContainer,
+  Crewbtn,
+  EquipBtn,
+  LeaderField,
+} from "./styles";
+import Crew from "../../assets/crew.svg";
+import Material from "../../assets/material.svg";
 import { AuthContext } from "../../providers/auth";
-import { useState } from "react";
-import Test from "../Modal";
 import Topnav from "../Topnav";
 import React from "react";
 import axios from "axios";
@@ -18,26 +29,35 @@ function EventList() {
     <>
       <Topnav />
       <Container>
-        <p>Eventos em Andamento</p>
-        <ul>
+        <ListHeader>
+          <p>Listagem</p>
+          <h6> 2 eventos</h6>
+        </ListHeader>
+        <OverList>
           {Evlist.length > 0 ? (
             Evlist.map((ev) => (
-              <li key={ev.id}>
-                <div id="datecont">
-                  <h2>{ev.Evdate}</h2>
-                </div>
-                <p>{ev.Evname}</p>
-                <Test
-                  event={() => deleteItem(ev.id)}
-                  id={ev.id}
-                  name={ev.Evname}
-                />
-              </li>
+              <ListItem key={ev.id}>
+                <Evname>{ev.Evname}</Evname>
+                <Evdate>{ev.Evdate}</Evdate>
+                <ButtonContainer>
+                  <EquipBtn>
+                    <img src={Crew} />
+                    Material
+                  </EquipBtn>
+                  <Crewbtn>
+                    <img src={Material} />
+                    Equipe
+                  </Crewbtn>
+                </ButtonContainer>
+                <LeaderField>
+                  Responsável :<p>{ev.Evleader}</p>
+                </LeaderField>
+              </ListItem>
             ))
           ) : (
             <p>Sem Dados</p>
           )}
-        </ul>
+        </OverList>
       </Container>
     </>
   );

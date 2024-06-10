@@ -6,36 +6,102 @@ export const Container = styled.div`
   margin: 70px auto;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
-  p {
-    font-size: 30px;
-  }
 
-  ul {
-    list-style: none;
-    padding: 5px;
-    div[id="datecont"] {
-      background-color: #f93838;
-      height: 100%;
-      width: 110px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 5px 0 0 5px;
-      position: relative;
-      font-size: 11px;
-    }
-    li {
-      border: #cecece 1px solid;
-      border-radius: 5px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-right: 20px;
-      margin-bottom: 10px;
-      p {
-        font-size: 25px;
-      }
-    }
+  @media (max-width: 412px) {
+    background-color: #333333;
+    margin-top: 0;
+    height: auto;
+    padding-bottom: 16px;
+  }
+`;
+
+export const OverList = styled.ul``;
+
+export const ListHeader = styled.div`
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    font-size: 20px;
+    color: white;
+    font-weight: 300;
+  }
+  h6 {
+    justify-content: end;
+    font-weight: 300;
+  }
+`;
+
+export const ListItem = styled.li`
+  list-style: none;
+  background-color: white;
+  border-radius: 10px;
+  margin: 16px;
+  padding: 16px;
+`;
+
+export const Evdate = styled.p`
+  color: red;
+  font-weight: 400;
+  font-size: 16px;
+`;
+
+export const Evname = styled.p`
+  font-weight: 400;
+  font-size: 20px;
+`;
+
+export const ButtonContainer = styled.div`
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+`;
+
+export const Crewbtn = styled.button`
+  background-color: #f0c808;
+  border: none;
+  border-radius: 8px;
+  height: 42px;
+  width: 60%;
+  font-family: Poppins;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    height: 25px;
+    width: 25px;
+    margin: 8px;
+  }
+`;
+
+export const EquipBtn = styled.button`
+  background-color: #dd1c1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  height: 42px;
+  width: 60%;
+  font-family: Poppins;
+  font-size: 18px;
+  img {
+    height: 20px;
+    width: 20px;
+    margin: 8px;
+  }
+`;
+
+export const LeaderField = styled.div`
+  display: flex;
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: 400;
+  p {
+    color: #f90c0c;
   }
 `;
