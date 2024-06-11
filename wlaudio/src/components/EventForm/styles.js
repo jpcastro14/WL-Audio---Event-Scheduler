@@ -2,13 +2,21 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   font-size: 40px;
+  background-color: white;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   @media (max-width: 412px) {
     padding: 0;
-    text-align: left;
     background: white;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     padding: 15px;
+    justify-content: left;
+    align-items: start;
+    gap: 15px;
   }
   button[type="test"] {
     background-color: #f93838;
@@ -26,6 +34,8 @@ export const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    background-color: white;
+    max-width: 700px;
     @media (max-width: 412px) {
       background-color: white;
       border-top-right-radius: 10px;
@@ -36,19 +46,17 @@ export const Container = styled.div`
 `;
 
 export const Titlediv = styled.div`
-  width: 100%;
   height: 30px;
-  margin-top: 50px;
+  margin-bottom: 50px;
   font-family: poppins;
-  font-size: 20px;
-  background-color: white;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+  font-size: 30px;
   @media (max-width: 412px) {
     margin-top: 0;
     padding-left: 15px;
     width: auto;
     margin-bottom: 40px;
+    font-size: 24px;
+    width: 100%;
   }
 `;
 

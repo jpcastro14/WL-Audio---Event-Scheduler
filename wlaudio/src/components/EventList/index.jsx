@@ -31,7 +31,7 @@ function EventList() {
       <Container>
         <ListHeader>
           <p>Listagem</p>
-          <h6> 2 eventos</h6>
+          <h6>{Evlist.length} Eventos</h6>
         </ListHeader>
         <OverList>
           {Evlist.length > 0 ? (

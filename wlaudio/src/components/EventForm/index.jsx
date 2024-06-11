@@ -73,7 +73,7 @@ function EventForm() {
             value={event.Evname}
           />
           <PInput
-            type="text"
+            type="date"
             text="Data"
             name="Evdate"
             onChange={HandleChange}
