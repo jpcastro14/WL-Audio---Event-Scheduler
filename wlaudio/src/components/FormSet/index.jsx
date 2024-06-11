@@ -1,11 +1,11 @@
 import { Container, MaterialInput, Label } from "./styles";
 import React from "react";
 
-function FormSet({ func01 }) {
+function FormSet({ handler, value }) {
   return (
     <Container>
       <Label>Material</Label>
-      <MaterialInput onChange={func01} />
+      <MaterialInput onChange={handler} value={value} />
     </Container>
   );
 }

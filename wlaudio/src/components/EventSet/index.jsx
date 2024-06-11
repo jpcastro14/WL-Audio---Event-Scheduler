@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Topnav from "../Topnav";
 import FormSet from "../FormSet/index";
 import { Goback } from "./styles";
@@ -12,12 +12,40 @@ import {
   EventName,
 } from "./styles";
 
+let nextId = 0;
 function EventSet() {
-  const [material, SetMaterial] = useState({});
+  const [materialname, SetMaterialname] = useState([]);
+  const [materialList, SetmaterialList] = useState([]);
 
   const handleMaterial = (e) => {
-    SetMaterial(e.target.value);
-    console.log(material);
+    SetMaterialname(e.target.value);
+  };
+
+  const LightSet = () => {
+    SetmaterialList([
+      ...materialList,
+      { id: nextId++, name: materialname, category: "light" },
+    ]);
+    console.log(materialList);
+    SetMaterialname("");
+  };
+
+  const AudioSet = () => {
+    SetmaterialList([
+      ...materialList,
+      { id: nextId++, name: materialname, category: "audio" },
+    ]);
+    console.log(materialList);
+    SetMaterialname("");
+  };
+
+  const StrutSet = () => {
+    SetmaterialList([
+      ...materialList,
+      { id: nextId++, name: materialname, category: "structures" },
+    ]);
+    console.log(materialList);
+    SetMaterialname("");
   };
 
   return (
@@ -29,8 +57,12 @@ function EventSet() {
           <EventName>Quintal dona Graça</EventName>
           <EventDate>12/02/2024</EventDate>
           <EventLeader>Responsável: Lucas Macedo</EventLeader>
-          <FormSet func01={handleMaterial} />
-          <ButtonFormSet />
+          <FormSet handler={handleMaterial} value={materialname} />
+          <ButtonFormSet
+            LightManage={LightSet}
+            AudioManage={AudioSet}
+            StructureManage={StrutSet}
+          />
         </EventHeader>
       </Container>
     </>
