@@ -10,7 +10,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   @media (max-width: 412px) {
-    padding: 0;
+    padding-bottom: 16px;
     background: white;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;

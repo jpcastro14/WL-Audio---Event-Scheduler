@@ -11,6 +11,7 @@ import {
   EventLeader,
   EventName,
 } from "./styles";
+import EquipmentFields from "../EquipmentFields";
 
 let nextId = 0;
 function EventSet() {
@@ -58,12 +59,13 @@ function EventSet() {
           <EventDate>12/02/2024</EventDate>
           <EventLeader>Responsável: Lucas Macedo</EventLeader>
           <FormSet handler={handleMaterial} value={materialname} />
-          <ButtonFormSet
-            LightManage={LightSet}
-            AudioManage={AudioSet}
-            StructureManage={StrutSet}
-          />
         </EventHeader>
+        <ButtonFormSet
+          LightManage={LightSet}
+          AudioManage={AudioSet}
+          StructureManage={StrutSet}
+        />
+        <EquipmentFields />
       </Container>
     </>
   );
