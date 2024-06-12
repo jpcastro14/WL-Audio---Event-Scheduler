@@ -65,7 +65,7 @@ function EventSet() {
           AudioManage={AudioSet}
           StructureManage={StrutSet}
         />
-        <EquipmentFields />
+        <EquipmentFields data={materialList} />
       </Container>
     </>
   );

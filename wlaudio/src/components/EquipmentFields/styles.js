@@ -6,22 +6,37 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 16px;
   margin-top: 20px;
+  ul {
+    padding: 16px;
+    font-size: 20px;
+    border-radius: 6px;
+  }
+`;
+
+export const Li = styled.li`
+  background-color: white;
+  list-style: none;
+  font-size: 16px;
+  padding: 4px;
+  padding-left: 8px;
+  border-radius: 10px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  img {
+    height: 20px;
+    width: auto;
+  }
 `;
 
 export const AudioField = styled.ul`
   background-color: #ffbe40;
-  width: 100%;
-  height: 44px;
 `;
 
 export const LigthField = styled.ul`
   background-color: #609df9;
-  width: 100%;
-  height: 44px;
 `;
 
 export const StrutField = styled.ul`
   background-color: #ff0000;
-  width: 100%;
-  height: 44px;
 `;
