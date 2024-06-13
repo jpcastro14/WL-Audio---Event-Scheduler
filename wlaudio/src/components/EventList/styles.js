@@ -31,13 +31,14 @@ export const ListHeader = styled.div`
   h6 {
     justify-content: end;
     font-weight: 300;
+    font-size: 18px;
   }
 `;
 
 export const ListItem = styled.li`
   list-style: none;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 6px;
   margin: 16px;
   padding: 16px;
 `;

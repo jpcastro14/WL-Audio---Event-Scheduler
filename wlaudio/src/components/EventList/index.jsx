@@ -10,15 +10,19 @@ import {
   EquipBtn,
   LeaderField,
 } from "./styles";
+import GoButton from "../GoButton";
 import Crew from "../../assets/crew.svg";
 import Material from "../../assets/material.svg";
 import { AuthContext } from "../../providers/auth";
 import Topnav from "../Topnav";
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function EventList() {
   const { Evlist } = React.useContext(AuthContext);
+
+  const primary = Boolean;
 
   function deleteItem(id) {
     axios.delete(`http://172.16.255.255:4000/posts/${id}`).then((resp) => {
@@ -40,14 +44,18 @@ function EventList() {
                 <Evname>{ev.Evname}</Evname>
                 <Evdate>{ev.Evdate}</Evdate>
                 <ButtonContainer>
-                  <EquipBtn>
+                  <GoButton
+                    to={`/eventset/${ev.id}`}
+                    text="Materiais"
+                    icon={Material}
+                  >
                     <img src={Crew} />
                     Material
-                  </EquipBtn>
-                  <Crewbtn>
+                  </GoButton>
+                  <GoButton primary={true.toString()} icon={Crew} text="Equipe">
                     <img src={Material} />
                     Equipe
-                  </Crewbtn>
+                  </GoButton>
                 </ButtonContainer>
                 <LeaderField>
                   Responsável :<p>{ev.Evleader}</p>
