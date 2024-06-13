@@ -15,7 +15,7 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/list" element={<EventList />} />
-          <Route path="/eventset" element={<EventSet />} />
+          <Route path="/eventset/:id" element={<EventSet />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
