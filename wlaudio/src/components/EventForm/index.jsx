@@ -8,15 +8,14 @@ import {
 } from "./styles";
 import PInput from "./Input";
 import arrow from "../../assets/arrow.svg";
-import { useState } from "react";
-import React from "react";
+import { useState, React } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { Titlediv } from "./styles";
 
 function EventForm() {
   const navigate = useNavigate();
-  const posthost = "http://172.16.235.128:3000/posts";
+  /* const posthost = "http://172.16.235.128:3000/posts"; */
 
   const [event, SetEvent] = useState({
     Evname: "",
