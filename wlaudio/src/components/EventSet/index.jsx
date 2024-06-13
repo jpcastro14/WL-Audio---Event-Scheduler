@@ -12,11 +12,24 @@ import {
   EventName,
 } from "./styles";
 import EquipmentFields from "../EquipmentFields";
+import { useParams } from "react-router";
+import axios from "axios";
 
 let nextId = 0;
 function EventSet() {
+  const { id } = useParams();
   const [materialname, SetMaterialname] = useState([]);
   const [materialList, SetmaterialList] = useState([]);
+  const [Event, SetEvent] = useState({});
+
+  useEffect(() => {
+    const fetchdata = async () => {
+      const response = await axios.get(`http://localhost:4000/posts/${id}`);
+      SetEvent(response.data);
+    };
+
+    fetchdata();
+  }, []);
 
   const handleMaterial = (e) => {
     SetMaterialname(e.target.value);
@@ -55,9 +68,9 @@ function EventSet() {
       <Container>
         <Goback src={Arrow} />
         <EventHeader>
-          <EventName>Quintal dona Graça</EventName>
-          <EventDate>12/02/2024</EventDate>
-          <EventLeader>Responsável: Lucas Macedo</EventLeader>
+          <EventName>{Event.Evname}</EventName>
+          <EventDate>{Event.Evdate}</EventDate>
+          <EventLeader>{Event.Evleader}</EventLeader>
           <FormSet handler={handleMaterial} value={materialname} />
         </EventHeader>
         <ButtonFormSet
