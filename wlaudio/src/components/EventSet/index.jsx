@@ -62,12 +62,20 @@ function EventSet() {
     SetMaterialname("");
   };
 
+  const PostMaterial = () => {
+    Event.material = materialList;
+    axios.put(`http://localhost:4000/posts/${id}`, {
+      ...Event,
+    });
+  };
+
   return (
     <>
       <Topnav />
       <Container>
         <Goback src={Arrow} />
         <EventHeader>
+          <button onClick={PostMaterial}>Mandar</button>
           <EventName>{Event.Evname}</EventName>
           <EventDate>{Event.Evdate}</EventDate>
           <EventLeader>{Event.Evleader}</EventLeader>
@@ -78,7 +86,7 @@ function EventSet() {
           AudioManage={AudioSet}
           StructureManage={StrutSet}
         />
-        <EquipmentFields data={materialList} />
+        <EquipmentFields data={materialList} Pdata={Event.material} />
       </Container>
     </>
   );

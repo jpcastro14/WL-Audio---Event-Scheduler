@@ -6,16 +6,32 @@
       "Evleader": "Wesley Laercio ",
       "Evaudiotechnician": "João Castro",
       "Evlighttechnician": "João Castro",
-      "id": 1
+      "id": 1,
+      "material": [
+        {
+          "id": 0,
+          "name": "aaa",
+          "category": "audio"
+        },
+        {
+          "id": 1,
+          "name": "bbbbb",
+          "category": "audio"
+        },
+        {
+          "id": 2,
+          "name": "hhhhhh",
+          "category": "audio"
+        }
+      ]
     },
-   {
-
-    "Evname": "Show Marina Sena",
-    "Evdate": "22/12/2024",
-    "Evleader": "Paulo Claudio ",
-    "Evaudiotechnician": "João Castro",
-    "Evlighttechnician": "João Castro",
-    "id": 2
-  } 
+    {
+      "Evname": "Show Marina Sena",
+      "Evdate": "22/12/2024",
+      "Evleader": "Paulo Claudio ",
+      "Evaudiotechnician": "João Castro",
+      "Evlighttechnician": "João Castro",
+      "id": 2
+    }
   ]
 }
