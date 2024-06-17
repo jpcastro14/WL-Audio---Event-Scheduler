@@ -31,12 +31,15 @@ export const Li = styled.li`
 
 export const AudioField = styled.ul`
   background-color: #ffbe40;
+  filter: opacity(80%);
 `;
 
 export const LigthField = styled.ul`
   background-color: #609df9;
+  filter: opacity(80%);
 `;
 
 export const StrutField = styled.ul`
   background-color: #ff0000;
+  filter: opacity(80%);
 `;

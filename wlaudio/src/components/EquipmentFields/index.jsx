@@ -6,31 +6,43 @@ function EquipmentFields({ data, Pdata }) {
   const AudioParts = Pdata
     ? Pdata.filter((item) => item.category === "audio")
     : data.filter((item) => item.category === "audio");
-  /* const LightParts = data.filter((item) => item.category === "light");
-  const StrutParts = data.filter((item) => item.category === "structures"); */
+
+  const LightParts = Pdata
+    ? Pdata.filter((item) => item.category === "light")
+    : data.filter((item) => item.category === "light");
+
+  const StrutParts = Pdata
+    ? Pdata.filter((item) => item.category === "structures")
+    : data.filter((item) => item.category === "structures");
 
   return (
     <Container>
       <AudioField>
         <p>Audio</p>
         {AudioParts.map((item) => (
-          <Li>
+          <Li key={item.id}>
             {item.name}
-            <img src={trash} />
+            <img alt="trash" src={trash} />
           </Li>
         ))}
       </AudioField>
       <LigthField>
         <p>Iluminação</p>
-        {/* {LightParts.map((item) => (
-          <Li>{item.name}</Li>
-        ))} */}
+        {LightParts.map((item) => (
+          <Li key={item.id}>
+            {item.name}
+            <img alt="trash" src={trash} />
+          </Li>
+        ))}
       </LigthField>
       <StrutField>
         <p>Estruturas</p>
-        {/* {StrutParts.map((item) => (
-          <Li>{item.name}</Li>
-        ))} */}
+        {StrutParts.map((item) => (
+          <Li key={item.id}>
+            {item.name}
+            <img alt="trash" src={trash} />
+          </Li>
+        ))}
       </StrutField>
     </Container>
   );
