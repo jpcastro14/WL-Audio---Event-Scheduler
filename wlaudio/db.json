@@ -1,37 +1,30 @@
 {
   "posts": [
     {
-      "Evname": "Show Natiruts",
-      "Evdate": "11/06/2024",
+      "Evname": "Cadastro de Clientes",
+      "Evdate": "2024-06-12",
       "Evleader": "Wesley Laercio ",
       "Evaudiotechnician": "João Castro",
       "Evlighttechnician": "João Castro",
+      "nextId": 0,
       "id": 1,
       "material": [
         {
           "id": 0,
-          "name": "aaa",
+          "name": "Som 1",
           "category": "audio"
         },
         {
           "id": 1,
-          "name": "bbbbb",
+          "name": "som 2",
           "category": "audio"
         },
         {
           "id": 2,
-          "name": "hhhhhh",
+          "name": "som 3",
           "category": "audio"
         }
       ]
-    },
-    {
-      "Evname": "Show Marina Sena",
-      "Evdate": "22/12/2024",
-      "Evleader": "Paulo Claudio ",
-      "Evaudiotechnician": "João Castro",
-      "Evlighttechnician": "João Castro",
-      "id": 2
     }
   ]
 }

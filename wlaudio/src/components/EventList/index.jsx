@@ -6,8 +6,6 @@ import {
   Evdate,
   Evname,
   ButtonContainer,
-  Crewbtn,
-  EquipBtn,
   LeaderField,
 } from "./styles";
 import GoButton from "../GoButton";
@@ -15,20 +13,24 @@ import Crew from "../../assets/crew.svg";
 import Material from "../../assets/material.svg";
 import { AuthContext } from "../../providers/auth";
 import Topnav from "../Topnav";
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function EventList() {
-  const { Evlist } = React.useContext(AuthContext);
+  /* const { Evlist } = React.useContext(AuthContext); */
 
-  const primary = Boolean;
+  const [Evlist, Setevlist] = useState([]);
 
-  function deleteItem(id) {
-    axios.delete(`http://172.16.255.255:4000/posts/${id}`).then((resp) => {
-      console.log(resp);
-    });
-  }
+  useEffect(() => {
+    const fetchdata = async () => {
+      const response = await axios.get(`http://localhost:4000/posts`);
+      Setevlist(response.data);
+    };
+
+    fetchdata();
+  }, []);
+
   return (
     <>
       <Topnav />
@@ -49,11 +51,11 @@ function EventList() {
                     text="Materiais"
                     icon={Material}
                   >
-                    <img src={Crew} />
+                    <img alt="crew" src={Crew} />
                     Material
                   </GoButton>
                   <GoButton primary={true.toString()} icon={Crew} text="Equipe">
-                    <img src={Material} />
+                    <img alt="crew" src={Material} />
                     Equipe
                   </GoButton>
                 </ButtonContainer>
