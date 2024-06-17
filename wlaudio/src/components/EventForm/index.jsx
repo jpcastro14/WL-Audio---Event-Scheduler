@@ -8,10 +8,13 @@ import {
 } from "./styles";
 import PInput from "./Input";
 import arrow from "../../assets/arrow.svg";
-import { useState, React } from "react";
+import { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { Titlediv } from "./styles";
+
+let nextId = 0;
 
 function EventForm() {
   const navigate = useNavigate();
@@ -28,7 +31,7 @@ function EventForm() {
   const HandleChange = (e) => {
     const { name, value } = e.target;
     SetEvent((event) => {
-      return { ...event, [name]: value };
+      return { ...event, [name]: value, nextId };
     });
   };
 
@@ -56,6 +59,7 @@ function EventForm() {
       Evaudiotechnician: "",
       Evlighttechnician: "",
     });
+    nextId++;
   };
 
   return (
