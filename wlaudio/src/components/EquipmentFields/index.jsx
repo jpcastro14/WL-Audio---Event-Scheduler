@@ -2,7 +2,7 @@ import React from "react";
 import { AudioField, Container, LigthField, StrutField, Li } from "./styles";
 import trash from "../../assets/trash.svg";
 
-function EquipmentFields({ data, Pdata }) {
+function EquipmentFields({ data, Pdata, RemoveItem }) {
   const AudioParts = Pdata
     ? Pdata.filter((item) => item.category === "audio")
     : data.filter((item) => item.category === "audio");
@@ -22,7 +22,7 @@ function EquipmentFields({ data, Pdata }) {
         {AudioParts.map((item) => (
           <Li key={item.id}>
             {item.name}
-            <img alt="trash" src={trash} />
+            <img alt="trash" src={trash} onClick={() => RemoveItem(item.id)} />
           </Li>
         ))}
       </AudioField>
@@ -31,7 +31,7 @@ function EquipmentFields({ data, Pdata }) {
         {LightParts.map((item) => (
           <Li key={item.id}>
             {item.name}
-            <img alt="trash" src={trash} />
+            <img alt="trash" src={trash} onClick={() => RemoveItem(item.id)} />
           </Li>
         ))}
       </LigthField>
@@ -40,7 +40,7 @@ function EquipmentFields({ data, Pdata }) {
         {StrutParts.map((item) => (
           <Li key={item.id}>
             {item.name}
-            <img alt="trash" src={trash} />
+            <img alt="trash" src={trash} onClick={() => RemoveItem(item.id)} />
           </Li>
         ))}
       </StrutField>

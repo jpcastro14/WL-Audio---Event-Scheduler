@@ -18,8 +18,14 @@ import axios from "axios";
 let nextId = 0;
 function EventSet() {
   const { id } = useParams();
+
+  //Recebe os dados do input
   const [materialname, SetMaterialname] = useState([]);
+
+  //Cria o array de materiais
   const [materialList, SetmaterialList] = useState([]);
+
+  //Seta o evento após o get no banco e antes do Post
   const [Event, SetEvent] = useState({});
 
   useEffect(() => {
@@ -82,6 +88,13 @@ function EventSet() {
     console.log(Event);
   };
 
+  const deleteItem = (id) => {
+    let newarr = materialList.toSpliced(id, 1);
+
+    SetmaterialList(newarr);
+    console.log(newarr);
+  };
+
   return (
     <>
       <Topnav />
@@ -100,7 +113,11 @@ function EventSet() {
           AudioManage={AudioSet}
           StructureManage={StrutSet}
         />
-        <EquipmentFields data={materialList} Pdata={Event.material} />
+        <EquipmentFields
+          data={materialList}
+          Pdata={Event.material}
+          RemoveItem={deleteItem}
+        />
       </Container>
     </>
   );
