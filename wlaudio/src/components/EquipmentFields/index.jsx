@@ -22,7 +22,11 @@ function EquipmentFields({ data, Pdata, RemoveItem }) {
         {AudioParts.map((item) => (
           <Li key={item.id}>
             {item.name}
-            <img alt="trash" src={trash} onClick={() => RemoveItem(item.id)} />
+            <img
+              alt="trash"
+              src={trash}
+              onClick={() => RemoveItem(AudioParts.indexOf(item.id))}
+            />
           </Li>
         ))}
       </AudioField>

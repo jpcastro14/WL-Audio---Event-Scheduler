@@ -22,10 +22,11 @@ function EventForm() {
 
   const [event, SetEvent] = useState({
     Evname: "",
+    Evlocation: "",
+    //Evleader: "",
     Evdate: "",
-    Evleader: "",
     Evaudiotechnician: "",
-    Evlighttechnician: "",
+    //Evlighttechnician: "",
   });
 
   const HandleChange = (e) => {
@@ -48,7 +49,7 @@ function EventForm() {
   const Handlesubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:4000/posts", event)
+      .post("http://localhost:8000/api/v1/events", event)
       .then((response) => console.log(response.status));
     console.log(event);
     navigate("/list");

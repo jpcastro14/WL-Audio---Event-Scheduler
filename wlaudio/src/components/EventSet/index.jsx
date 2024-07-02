@@ -89,9 +89,8 @@ function EventSet() {
   };
 
   const deleteItem = (id) => {
-    let newarr = materialList.toSpliced(id, 1);
+    const newarr = materialList.splice(id, 1);
 
-    SetmaterialList(newarr);
     console.log(newarr);
   };
 
