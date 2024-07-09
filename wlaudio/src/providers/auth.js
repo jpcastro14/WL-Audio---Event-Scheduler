@@ -7,7 +7,7 @@ export const AuthContext = React.createContext({});
 export const AuthProvider = (props) => {
   const [Evlist, Setevlist] = useState([]);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     axios
       .get("http://localhost:4000/posts")
       .then((response) => Setevlist(response.data))
@@ -19,7 +19,7 @@ export const AuthProvider = (props) => {
           console.log(error.request);
         }
       });
-  }, []);
+  }, []); */
 
   return (
     <AuthContext.Provider value={{ Evlist }}>

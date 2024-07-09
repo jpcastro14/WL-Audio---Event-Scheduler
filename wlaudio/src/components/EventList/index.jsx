@@ -24,8 +24,9 @@ function EventList() {
 
   useEffect(() => {
     const fetchdata = async () => {
-      const response = await axios.get(`http://localhost:4000/posts`);
+      const response = await axios.get("http://localhost:8000/api/v1/techs");
       Setevlist(response.data);
+      console.log(response);
     };
 
     fetchdata();
