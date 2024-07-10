@@ -11,7 +11,7 @@ import {
 import GoButton from "../GoButton";
 import Crew from "../../assets/crew.svg";
 import Material from "../../assets/material.svg";
-import { AuthContext } from "../../providers/auth";
+//import { AuthContext } from "../../providers/auth";
 import Topnav from "../Topnav";
 import React, { useEffect } from "react";
 import axios from "axios";
@@ -24,7 +24,11 @@ function EventList() {
 
   useEffect(() => {
     const fetchdata = async () => {
-      const response = await axios.get("http://localhost:8000/api/v1/techs");
+      const response = await axios
+        .get("http://localhost:8000/api/v1/techs")
+        .catch((error) => {
+          console.log("Erro ocorrido -> " + error);
+        });
       Setevlist(response.data);
       console.log(response);
     };
