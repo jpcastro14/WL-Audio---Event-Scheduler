@@ -5,6 +5,7 @@ import App from "./App";
 import EventSet from "./components/EventSet";
 import EventList from "../src/components/EventList/index";
 import CourseForm from "./components/CourseForm";
+import CoursePut from "./components/CoursePut";
 import { AuthProvider } from "./providers/auth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -18,6 +19,7 @@ root.render(
           <Route path="/list" element={<EventList />} />
           <Route path="/eventset/:id" element={<EventSet />} />
           <Route path="/courseform" element={<CourseForm />} />
+          <Route path="/courseput" element={<CoursePut />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
