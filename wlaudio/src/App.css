@@ -5,7 +5,10 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  
 }
+
+
 *{
   margin: 0;
   padding: 0;

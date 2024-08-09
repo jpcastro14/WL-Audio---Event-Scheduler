@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import "bootstrap/dist/js/bootstrap.bundle";
+import "bootstrap/dist/css/bootstrap.css";
 import App from "./App";
 import EventSet from "./components/EventSet";
 import EventList from "../src/components/EventList/index";
