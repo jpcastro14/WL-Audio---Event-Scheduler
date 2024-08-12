@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import axios from "axios";
 
-function CourseForm() {
+function CoursePut() {
   const [courses, SetCourses] = useState({});
 
   const [putCourse, SetputCourse] = useState({
@@ -114,4 +114,4 @@ function CourseForm() {
   );
 }
 
-export default CourseForm;
+export default CoursePut;
