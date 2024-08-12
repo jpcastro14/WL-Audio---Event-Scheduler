@@ -5,9 +5,13 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import axios from "axios";
+import { Alert } from "react-bootstrap";
 
 function CoursePut() {
   const [courses, SetCourses] = useState({});
+
+  const [show, Setshow] = useState(false);
+  const [message, Setmessage] = useState(null);
 
   const [putCourse, SetputCourse] = useState({
     title: "",
@@ -44,41 +48,23 @@ function CoursePut() {
 
     axios
       .put("http://localhost:8000/api/v2/courses/1/", putCourse)
-      .then((res) => console.log(res));
+      .then((res) => console.log(res))
+      .then(Setshow(true));
 
-    console.log(putCourse);
+    Setshow(true);
+    Setmessage(`${putCourse.title} editado com sucesso`);
+
+    setTimeout(() => {
+      Setshow(false);
+    }, 3000);
   };
-
-  /*   useEffect(() => {
-    const getData = async () => {
-      const response = await fetch("http://localhost:8000/api/v2/courses/");
-      const result = await response.json();
-      SetCourses(result);
-    };
-
-    getData();
-  }, []); */
 
   return (
     <Container>
-      {/*  <Button variant="danger">Teste</Button>
-      <form onSubmit={handlePost}>
-        <Input
-          type="text"
-          name="title"
-          defaultValue={courses.title}
-          onChange={handleType}
-        />
-
-        <Input
-          type="text"
-          name="url"
-          defaultValue={courses.url}
-          onChange={handleType}
-        />
-        <Input type="submit" />
-      </form> */}
       <Form onSubmit={handlePost}>
+        <Alert show={show} variant="warning">
+          {message}
+        </Alert>
         <Row>
           <Col>
             <Form.Group id="control01" className="mb-3">
