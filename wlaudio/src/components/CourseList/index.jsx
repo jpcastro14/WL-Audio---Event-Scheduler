@@ -26,7 +26,13 @@ function CourseList() {
           <Card.Header>{item.title}</Card.Header>
           <Card.Body>
             <Card.Title>{item.url}</Card.Title>
-            <Card.Text>teste </Card.Text>
+            <Card.Text>
+              {item.ratings
+                ? item.ratings.map((ratings) => (
+                    <li key={ratings.id}>{ratings.rating}</li>
+                  ))
+                : console.log("sem dados")}
+            </Card.Text>
           </Card.Body>
         </Card>
       ))}

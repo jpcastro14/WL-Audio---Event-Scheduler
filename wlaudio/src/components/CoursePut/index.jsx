@@ -12,6 +12,7 @@ function CoursePut() {
 
   const [show, Setshow] = useState(false);
   const [message, Setmessage] = useState(null);
+  const [nmr, Setnmr] = useState(1);
 
   const [putCourse, SetputCourse] = useState({
     title: "",
@@ -31,7 +32,7 @@ function CoursePut() {
   useEffect(() => {
     const getData = async () => {
       const response = await axios
-        .get("http://localhost:8000/api/v2/courses/1/")
+        .get(`http://localhost:8000/api/v2/courses/${nmr}/`)
         .catch((err) => console.log("Erro ocorrido", "=>", err.message));
       {
         response
@@ -40,14 +41,13 @@ function CoursePut() {
       }
     };
     getData();
-    console.log(courses);
   }, []);
 
   const handlePost = (e) => {
     e.preventDefault();
 
     axios
-      .put("http://localhost:8000/api/v2/courses/1/", putCourse)
+      .put(`http://localhost:8000/api/v2/courses/${nmr}/`, putCourse)
       .then((res) => console.log(res))
       .then(Setshow(true));
 
@@ -94,6 +94,11 @@ function CoursePut() {
           <Button variant="info" onClick={handlePost}>
             Salvar
           </Button>
+          {courses.ratings ? (
+            courses.ratings.map((item) => <li key={item.id}>{item.rating}</li>)
+          ) : (
+            <p>sem dados</p>
+          )}
         </Row>
       </Form>
     </Container>
