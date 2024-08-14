@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "./styles";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
+import ConnButton from "../ConnButton";
 import axios from "axios";
 
 function CourseList() {
@@ -26,13 +27,10 @@ function CourseList() {
           <Card.Header>{item.title}</Card.Header>
           <Card.Body>
             <Card.Title>{item.url}</Card.Title>
-            <Card.Text>
-              {item.ratings
-                ? item.ratings.map((ratings) => (
-                    <li key={ratings.id}>{ratings.rating}</li>
-                  ))
-                : console.log("sem dados")}
-            </Card.Text>
+            <Card.Text></Card.Text>
+            <div className="d-grid gap-2">
+              <ConnButton text="Ver mais" to={"/courseset"} />
+            </div>
           </Card.Body>
         </Card>
       ))}

@@ -12,6 +12,7 @@ import { AuthProvider } from "./providers/auth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CourseCard from "./components/CourseCard";
 import CourseList from "./components/CourseList";
+import CourseSet from './components/CourseSet'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -26,6 +27,7 @@ root.render(
           <Route path="/courseput" element={<CoursePut />} />
           <Route path="/coursecard" element={<CourseCard />} />
           <Route path="/courselist" element={<CourseList />} />
+          <Route path="/courseset" element={<CourseSet />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
