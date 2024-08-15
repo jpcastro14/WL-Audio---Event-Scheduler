@@ -95,7 +95,7 @@ function CoursePut() {
             Salvar
           </Button>
           {courses.ratings ? (
-            courses.ratings.map((item) => <li key={item.id}>{item.rating}</li>)
+            courses.ratings.map((item) => <input value={item.comment} />)
           ) : (
             <p>sem dados</p>
           )}

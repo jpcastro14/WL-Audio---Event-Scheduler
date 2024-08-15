@@ -6,18 +6,34 @@ import axios from "axios";
 
 function CourseSet() {
   const { id } = useParams();
-  const [course, SetCourse] = useState([]);
-  const [ratings, Setratings] = useState([]);
+  const [course, setCourse] = useState({
+    title: "",
+    url: "",
+    ratings: [" "],
+  });
+  const [ratings, setRatings] = useState([]);
+
+  /*   useEffect(() => {
+    const getdata = async () => {
+      const response = await axios.get(
+        `http://localhost:8000/api/v2/courses/${id}/`
+      );
+      const courses = await response.json();
+
+      setCourse(courses);
+      console.log(course);
+    };
+    getdata();
+  }, []); */
 
   useEffect(() => {
     const getdata = async () => {
       const response = await axios.get(
         `http://localhost:8000/api/v2/courses/${id}/`
       );
-
-      SetCourse(response.data);
-      Setratings(response.data.ratings);
+      setCourse(response.data);
     };
+
     getdata();
   }, []);
 
@@ -27,14 +43,12 @@ function CourseSet() {
         <Card.Header>{course.title}</Card.Header>
         <Card.Body>
           <Card.Title></Card.Title>
-          <div className="d-grid gap-1">
-            <Button>{id}</Button>
-          </div>
-          <ul>
-            {ratings.map((item) => (
-              <p>{item.rating}</p>
+          <div className="d-grid gap-2"></div>
+          <div className="d-grid gap-2">
+            {course.ratings.map((item) => (
+              <Button>{item.name}</Button>
             ))}
-          </ul>
+          </div>
         </Card.Body>
       </Card>
     </Container>
