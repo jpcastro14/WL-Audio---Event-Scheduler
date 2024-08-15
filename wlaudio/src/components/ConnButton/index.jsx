@@ -1,12 +1,12 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { LinkButton } from "./styles";
 
 function ConnButton({ text, to }) {
   return (
     <div className="d-grid gap-2">
       <Button variant="danger">
-        <Link to={to}>{text}</Link>
+        <LinkButton to={to}>{text}</LinkButton>
       </Button>
     </div>
   );

@@ -35,7 +35,7 @@ function EventSet() {
     };
 
     fetchdata();
-  }, []);
+  }, [id]);
 
   const handleMaterial = (e) => {
     SetMaterialname(e.target.value);

@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 import { Alert } from "react-bootstrap";
 
 function CourseForm() {
-  const [courses, SetCourses] = useState([]);
+  const [courses] = useState([]);
   const [show, Setshow] = useState(false);
   const [message, setMessage] = useState(null);
 

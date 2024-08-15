@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Input } from "./styles";
+import { Container } from "./styles";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -12,7 +12,7 @@ function CoursePut() {
 
   const [show, Setshow] = useState(false);
   const [message, Setmessage] = useState(null);
-  const [nmr, Setnmr] = useState(1);
+  const [nmr] = useState(1);
 
   const [putCourse, SetputCourse] = useState({
     title: "",

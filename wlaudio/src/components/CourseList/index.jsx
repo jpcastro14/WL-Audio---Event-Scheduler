@@ -27,9 +27,8 @@ function CourseList() {
           <Card.Header>{item.title}</Card.Header>
           <Card.Body>
             <Card.Title>{item.url}</Card.Title>
-            <Card.Text></Card.Text>
             <div className="d-grid gap-2">
-              <ConnButton text="Ver mais" to={"/courseset"} />
+              <ConnButton text="Ver mais" to={`/courseset/${item.id}`} />
             </div>
           </Card.Body>
         </Card>
