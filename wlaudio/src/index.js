@@ -18,7 +18,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<CourseList />} />
         <Route path="/list" element={<EventList />} />
         <Route path="/eventset/:id" element={<EventSet />} />
         <Route path="/courseform" element={<CourseForm />} />
