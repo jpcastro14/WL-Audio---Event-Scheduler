@@ -6,6 +6,7 @@ import {
   InputGroup,
   Modal,
   ModalHeader,
+  Alert,
 } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router";
 import { Container } from "./styles";
@@ -19,6 +20,7 @@ function CourseSet() {
   const [show, setShow] = useState(false);
   const [putCourse, setPutcourse] = useState({});
   const [disabledurl, setDisabledurl] = useState(true);
+  const [showMessage, setShowMessage] = useState(false);
   const [disabledname, setDisabledname] = useState(true);
 
   useEffect(() => {
@@ -63,13 +65,18 @@ function CourseSet() {
 
     axios
       .delete(`http://localhost:8000/api/v2/courses/${id}/`)
-      .then((res) => console.log(res.status))
+      .then((res) => {
+        if ((res.status = 204)) {
+          setShowMessage(!showMessage);
+        }
+      })
       .catch((err) => console.log(err.status));
 
     setTimeout(() => {
       navigate("/courselist");
       setShow(!show);
-    }, 2000);
+      setShowMessage(!showMessage);
+    }, 4000);
   }
 
   function handleType(e) {
@@ -89,13 +96,25 @@ function CourseSet() {
             <Modal.Title>Deseja apagar esse curso?</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Button variant="warning">Cancelar</Button>
+            <Button variant="warning" onClick={() => setShow(!show)}>
+              Cancelar
+            </Button>
             <Button onClick={handleDel} variant="danger">
               Confirmar
             </Button>
           </Modal.Body>
         </Modal>
       </div>
+      <div className="d-grid gap-2">
+        <Alert show={showMessage} variant="primary">
+          Curso{" "}
+          <u>
+            <b>{course.title}</b>
+          </u>{" "}
+          excluído com sucesso!
+        </Alert>
+      </div>
+
       <Card style={{ width: "58rem" }}>
         <Card.Header className="mt-2">
           <Form.Label>Editar um curso</Form.Label>
@@ -149,7 +168,7 @@ function CourseSet() {
             <Button onClick={HandlePut} variant="warning">
               Salvar
             </Button>
-            <Button onClick={toggleShow} variant="danger">
+            <Button onClick={() => setShow(!show)} variant="danger">
               Apagar
             </Button>
           </div>

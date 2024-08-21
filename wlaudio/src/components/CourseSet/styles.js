@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-wrap: wrap;
   flex-grow: 1 0 350px;
   gap: 20px;
-  padding: 20px;
+  padding: 20px 20px 0 20px;
   height: 320px;
   justify-content: center;
 `;
