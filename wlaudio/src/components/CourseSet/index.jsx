@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Form, InputGroup } from "react-bootstrap";
-import { useParams } from "react-router";
+import {
+  Button,
+  Card,
+  Form,
+  InputGroup,
+  Modal,
+  ModalHeader,
+} from "react-bootstrap";
+import { useNavigate, useParams } from "react-router";
 import { Container } from "./styles";
+import { Navigate } from "react-router";
 import axios from "axios";
 
 function CourseSet() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [course, setCourse] = useState({});
+  const [show, setShow] = useState(false);
   const [putCourse, setPutcourse] = useState({});
   const [disabledurl, setDisabledurl] = useState(true);
   const [disabledname, setDisabledname] = useState(true);
@@ -25,6 +35,10 @@ function CourseSet() {
     return () => {};
   }, [id]);
 
+  const toggleShow = () => {
+    setShow(!show);
+  };
+
   const toggledisabledname = () => {
     setDisabledname(!disabledname);
   };
@@ -38,9 +52,24 @@ function CourseSet() {
 
     axios
       .put(`http://localhost:8000/api/v2/courses/${id}/`, putCourse)
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .then((res) => console.log(res.status));
 
     console.log(putCourse);
+  }
+
+  function handleDel() {
+    setShow(!show);
+
+    axios
+      .delete(`http://localhost:8000/api/v2/courses/${id}/`)
+      .then((res) => console.log(res.status))
+      .catch((err) => console.log(err.status));
+
+    setTimeout(() => {
+      navigate("/courselist");
+      setShow(!show);
+    }, 2000);
   }
 
   function handleType(e) {
@@ -54,6 +83,19 @@ function CourseSet() {
 
   return (
     <Container>
+      <div className="modal show">
+        <Modal show={show} onHide={toggleShow}>
+          <Modal.Header closeButton>
+            <Modal.Title>Deseja apagar esse curso?</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Button variant="warning">Cancelar</Button>
+            <Button onClick={handleDel} variant="danger">
+              Confirmar
+            </Button>
+          </Modal.Body>
+        </Modal>
+      </div>
       <Card style={{ width: "58rem" }}>
         <Card.Header className="mt-2">
           <Form.Label>Editar um curso</Form.Label>
@@ -106,6 +148,9 @@ function CourseSet() {
           <div className="d-grid gap-2">
             <Button onClick={HandlePut} variant="warning">
               Salvar
+            </Button>
+            <Button onClick={toggleShow} variant="danger">
+              Apagar
             </Button>
           </div>
           <Form></Form>

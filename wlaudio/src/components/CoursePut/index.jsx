@@ -48,8 +48,7 @@ function CoursePut() {
 
     axios
       .put(`http://localhost:8000/api/v2/courses/${nmr}/`, putCourse)
-      .then((res) => console.log(res))
-      .then(Setshow(true));
+      .then((res) => console.log(res));
 
     Setshow(true);
     Setmessage(`${putCourse.title} editado com sucesso`);

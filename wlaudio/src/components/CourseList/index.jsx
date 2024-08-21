@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "./styles";
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import ConnButton from "../ConnButton";
 import axios from "axios";
 
@@ -10,7 +10,7 @@ function CourseList() {
   useEffect(() => {
     const getData = async () => {
       const response = await axios
-        .get("http://localhost:8000/api/v1/courses/")
+        .get("http://localhost:8000/api/v2/courses/")
         .catch((err) => console.log(`Erro ocorrido => ${err}`));
       response
         ? Setcourse(response.data)
