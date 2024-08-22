@@ -7,6 +7,9 @@ import {
   Modal,
   ModalHeader,
   Alert,
+  Toast,
+  ToastBody,
+  ToastContainer,
 } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router";
 import { Container } from "./styles";
@@ -159,11 +162,31 @@ function CourseSet() {
                     aria-describedby="basic-addon1"
                   />
                 </InputGroup>
+                <div className="d-gid gap-2">
+                  <InputGroup className="mb-3">
+                    {course.ratings
+                      ? course.ratings.map((item) => (
+                          <ToastContainer className="position-static m-4">
+                            <Toast>
+                              <Toast.Header closeButton={false}>
+                                <small>
+                                  {item.rating} - <strong>{item.name}</strong>
+                                </small>
+                                {/*  <strong>{item.name}</strong> */}
+                              </Toast.Header>
+                              <Toast.Body>{item.comment}</Toast.Body>
+                            </Toast>
+                          </ToastContainer>
+                        ))
+                      : ""}
+                  </InputGroup>
+                </div>
               </>
             ) : (
               <p>Sem dados</p>
             )}
           </div>
+
           <div className="d-grid gap-2">
             <Button onClick={HandlePut} variant="warning">
               Salvar
@@ -172,7 +195,6 @@ function CourseSet() {
               Apagar
             </Button>
           </div>
-          <Form></Form>
         </Card.Body>
       </Card>
     </Container>
