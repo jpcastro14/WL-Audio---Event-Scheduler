@@ -12,7 +12,8 @@ import {
   ToastContainer,
 } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router";
-import { Container } from "./styles";
+import { Container, Navigator, ToastField } from "./styles";
+import returnbtn from "../../assets/returnbtn.svg";
 import { Navigate } from "react-router";
 import axios from "axios";
 
@@ -69,7 +70,7 @@ function CourseSet() {
     axios
       .delete(`http://localhost:8000/api/v2/courses/${id}/`)
       .then((res) => {
-        if ((res.status = 204)) {
+        if (res.status === 204) {
           setShowMessage(!showMessage);
         }
       })
@@ -93,12 +94,20 @@ function CourseSet() {
 
   return (
     <Container>
-      <div className="modal show">
+      <Navigator>
+        <img
+          onClick={() => navigate("/courselist")}
+          src={returnbtn}
+          style={{ cursor: "pointer" }}
+        />
+      </Navigator>
+
+      <div>
         <Modal show={show} onHide={toggleShow}>
           <Modal.Header closeButton>
             <Modal.Title>Deseja apagar esse curso?</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body style={{ display: "flex" }}>
             <Button variant="warning" onClick={() => setShow(!show)}>
               Cancelar
             </Button>
@@ -108,7 +117,8 @@ function CourseSet() {
           </Modal.Body>
         </Modal>
       </div>
-      <div className="d-grid gap-2">
+
+      <div id="alert-container" className="d-grid gap-2">
         <Alert show={showMessage} variant="primary">
           Curso{" "}
           <u>
@@ -118,9 +128,9 @@ function CourseSet() {
         </Alert>
       </div>
 
-      <Card style={{ width: "58rem" }}>
+      <Card style={{ maxWidth: "1000px" }}>
         <Card.Header className="mt-2">
-          <Form.Label>Editar um curso</Form.Label>
+          <Form.Label>Feedbacks do colaborador</Form.Label>
         </Card.Header>
         <Card.Body>
           <Card.Title>#{course.id}</Card.Title>
@@ -144,7 +154,6 @@ function CourseSet() {
                     aria-describedby="basic-addon1"
                   />
                 </InputGroup>
-                {/*------------------------------------------------------ */}
                 <InputGroup className="mb-3">
                   <Button
                     onClick={toggledisabledurl}
@@ -164,10 +173,10 @@ function CourseSet() {
                 </InputGroup>
                 <div className="d-gid gap-2">
                   <InputGroup className="mb-3">
-                    {course.ratings
-                      ? course.ratings.map((item) => (
-                          <ToastContainer className="position-static m-4">
-                            <Toast>
+                    <ToastField>
+                      {course.ratings
+                        ? course.ratings.map((item) => (
+                            <Toast style={{ width: "100%" }}>
                               <Toast.Header closeButton={false}>
                                 <small>
                                   {item.rating} - <strong>{item.name}</strong>
@@ -176,9 +185,9 @@ function CourseSet() {
                               </Toast.Header>
                               <Toast.Body>{item.comment}</Toast.Body>
                             </Toast>
-                          </ToastContainer>
-                        ))
-                      : ""}
+                          ))
+                        : ""}
+                    </ToastField>
                   </InputGroup>
                 </div>
               </>
