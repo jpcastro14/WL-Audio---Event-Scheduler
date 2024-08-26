@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "./styles";
+import { CardContainer, Container } from "./styles";
 import { Card } from "react-bootstrap";
 import ConnButton from "../ConnButton";
 import axios from "axios";
@@ -22,17 +22,19 @@ function CourseList() {
 
   return (
     <Container>
-      {course.map((item) => (
-        <Card key={item.title} style={{ width: "18rem" }}>
-          <Card.Header>{item.title}</Card.Header>
-          <Card.Body>
-            <Card.Title>{item.url}</Card.Title>
-            <div className="d-grid gap-2">
-              <ConnButton text="Ver mais" to={`/courseset/${item.id}`} />
-            </div>
-          </Card.Body>
-        </Card>
-      ))}
+      <CardContainer>
+        {course.map((item) => (
+          <Card key={item.title} style={{ width: "18rem" }}>
+            <Card.Header>{item.title}</Card.Header>
+            <Card.Body>
+              <Card.Text>{item.url}</Card.Text>
+              <div className="d-grid gap-2">
+                <ConnButton text="Ver mais" to={`/courseset/${item.id}`} />
+              </div>
+            </Card.Body>
+          </Card>
+        ))}
+      </CardContainer>
     </Container>
   );
 }

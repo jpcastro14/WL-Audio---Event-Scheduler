@@ -14,7 +14,6 @@ import {
 import { useNavigate, useParams } from "react-router";
 import { Container, Navigator, ToastField } from "./styles";
 import returnbtn from "../../assets/returnbtn.svg";
-import { Navigate } from "react-router";
 import axios from "axios";
 
 function CourseSet() {
@@ -25,6 +24,7 @@ function CourseSet() {
   const [putCourse, setPutcourse] = useState({});
   const [disabledurl, setDisabledurl] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   const [disabledname, setDisabledname] = useState(true);
 
   useEffect(() => {
@@ -53,15 +53,21 @@ function CourseSet() {
     setDisabledurl(!disabledurl);
   };
 
-  function HandlePut(e) {
-    e.preventDefault();
-
+  function HandlePut() {
     axios
       .put(`http://localhost:8000/api/v2/courses/${id}/`, putCourse)
-      .catch((err) => console.log(err))
-      .then((res) => console.log(res.status));
+      .then((res) => {
+        if (res.status === 200) {
+          setAlertMessage(` editado com sucesso!`);
+          setShowMessage(!showMessage);
+          console.log(res.status);
+        }
+      })
+      .catch((err) => console.log(err.status));
 
-    console.log(putCourse);
+    setTimeout(() => {
+      setShowMessage(!showMessage);
+    }, 1000);
   }
 
   function handleDel() {
@@ -72,14 +78,13 @@ function CourseSet() {
       .then((res) => {
         if (res.status === 204) {
           setShowMessage(!showMessage);
+          setAlertMessage(` excluído com sucesso!`);
         }
       })
       .catch((err) => console.log(err.status));
 
     setTimeout(() => {
       navigate("/courselist");
-      setShow(!show);
-      setShowMessage(!showMessage);
     }, 4000);
   }
 
@@ -119,12 +124,16 @@ function CourseSet() {
       </div>
 
       <div id="alert-container" className="d-grid gap-2">
-        <Alert show={showMessage} variant="primary">
-          Curso{" "}
+        <Alert
+          show={showMessage}
+          variant="primary"
+          onClose={() => setShowMessage(!showMessage)}
+          dismissible
+        >
           <u>
-            <b>{course.title}</b>
+            <b>{putCourse.title}</b>
           </u>{" "}
-          excluído com sucesso!
+          {alertMessage}
         </Alert>
       </div>
 
@@ -146,6 +155,7 @@ function CourseSet() {
                     Editar
                   </Button>
                   <Form.Control
+                    onSubmit={HandlePut}
                     onChange={handleType}
                     disabled={disabledname}
                     defaultValue={course.title}
@@ -163,6 +173,7 @@ function CourseSet() {
                     Editar
                   </Button>
                   <Form.Control
+                    onSubmit={HandlePut}
                     onChange={handleType}
                     disabled={disabledurl}
                     defaultValue={course.url}
@@ -197,7 +208,7 @@ function CourseSet() {
           </div>
 
           <div className="d-grid gap-2">
-            <Button onClick={HandlePut} variant="warning">
+            <Button onClick={HandlePut} variant="success">
               Salvar
             </Button>
             <Button onClick={() => setShow(!show)} variant="danger">

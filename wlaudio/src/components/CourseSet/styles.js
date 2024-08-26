@@ -9,7 +9,7 @@ export const Container = styled.div`
   padding: 20px 20px 0 20px;
   height: 120px;
   justify-content: center;
-  img{
+  img {
     height: 50px;
   }
 `;
@@ -21,13 +21,11 @@ export const ToastField = styled.div`
   padding: 20px;
   align-items: start;
   margin: 0 auto;
+  width: 100%;
 `;
 
 export const Navigator = styled.div`
-
   display: flex;
   justify-content: start;
   width: 100%;
-
-
 `;
