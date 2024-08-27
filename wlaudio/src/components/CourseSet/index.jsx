@@ -53,21 +53,19 @@ function CourseSet() {
     setDisabledurl(!disabledurl);
   };
 
-  function HandlePut() {
+  function HandlePut(e) {
+    e.preventDefault();
+
     axios
       .put(`http://localhost:8000/api/v2/courses/${id}/`, putCourse)
+      .catch((err) => console.log(err.status))
       .then((res) => {
         if (res.status === 200) {
           setAlertMessage(` editado com sucesso!`);
-          setShowMessage(!showMessage);
+          setShowMessage(true);
           console.log(res.status);
         }
-      })
-      .catch((err) => console.log(err.status));
-
-    setTimeout(() => {
-      setShowMessage(!showMessage);
-    }, 1000);
+      });
   }
 
   function handleDel() {
@@ -123,12 +121,12 @@ function CourseSet() {
         </Modal>
       </div>
 
-      <div id="alert-container" className="d-grid gap-2">
+      <div id="alert-container">
         <Alert
           show={showMessage}
           variant="primary"
-          onClose={() => setShowMessage(!showMessage)}
           dismissible
+          onClose={() => setShowMessage(!showMessage)}
         >
           <u>
             <b>{putCourse.title}</b>
@@ -146,42 +144,45 @@ function CourseSet() {
           <div className="d-grid gap-2">
             {course ? (
               <>
-                <InputGroup className="mb-3">
-                  <Button
-                    onClick={toggledisabledname}
-                    variant="outline-danger"
-                    id="button-addon1"
-                  >
-                    Editar
-                  </Button>
-                  <Form.Control
-                    onSubmit={HandlePut}
-                    onChange={handleType}
-                    disabled={disabledname}
-                    defaultValue={course.title}
-                    type="text"
-                    name="title"
-                    aria-describedby="basic-addon1"
-                  />
-                </InputGroup>
-                <InputGroup className="mb-3">
-                  <Button
-                    onClick={toggledisabledurl}
-                    variant="outline-danger"
-                    id="button-addon1"
-                  >
-                    Editar
-                  </Button>
-                  <Form.Control
-                    onSubmit={HandlePut}
-                    onChange={handleType}
-                    disabled={disabledurl}
-                    defaultValue={course.url}
-                    type="text"
-                    name="url"
-                    aria-describedby="basic-addon1"
-                  />
-                </InputGroup>
+                <Form onSubmit={HandlePut}>
+                  <InputGroup className="mb-3">
+                    <Button
+                      onClick={toggledisabledname}
+                      variant="outline-danger"
+                      id="button-addon1"
+                    >
+                      Editar
+                    </Button>
+                    <Form.Control
+                      onSubmit={HandlePut}
+                      onChange={handleType}
+                      disabled={disabledname}
+                      defaultValue={course.title}
+                      type="text"
+                      name="title"
+                      aria-describedby="basic-addon1"
+                    />
+                  </InputGroup>
+                  <InputGroup className="mb-3">
+                    <Button
+                      onClick={toggledisabledurl}
+                      variant="outline-danger"
+                      id="button-addon1"
+                    >
+                      Editar
+                    </Button>
+                    <Form.Control
+                      onSubmit={HandlePut}
+                      onChange={handleType}
+                      disabled={disabledurl}
+                      defaultValue={course.url}
+                      type="text"
+                      name="url"
+                      aria-describedby="basic-addon1"
+                    />
+                  </InputGroup>
+                  <Form.Control type="submit" />
+                </Form>
                 <div className="d-gid gap-2">
                   <InputGroup className="mb-3">
                     <ToastField>
