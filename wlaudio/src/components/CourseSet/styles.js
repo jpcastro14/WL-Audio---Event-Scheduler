@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   background-color: #4287f5;
   flex-wrap: wrap;
-  flex-grow: 1 0 350px;
-  gap: 20px;
-  padding: 20px 20px 0 20px;
+  padding: 20px 20px 20px 20px;
   justify-content: center;
-
+  align-items: center;
   img {
     height: 50px;
   }
@@ -28,4 +27,5 @@ export const Navigator = styled.div`
   display: flex;
   justify-content: start;
   width: 100%;
+  margin-bottom: 30px;
 `;

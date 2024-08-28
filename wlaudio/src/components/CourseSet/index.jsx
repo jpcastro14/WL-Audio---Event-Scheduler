@@ -24,7 +24,9 @@ function CourseSet() {
   const [putCourse, setPutcourse] = useState({});
   const [disabledurl, setDisabledurl] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState(
+    "Curso alterado com sucesso!"
+  );
   const [disabledname, setDisabledname] = useState(true);
 
   useEffect(() => {
@@ -61,11 +63,12 @@ function CourseSet() {
       .catch((err) => console.log(err.status))
       .then((res) => {
         if (res.status === 200) {
-          setAlertMessage(` editado com sucesso!`);
           setShowMessage(true);
-          console.log(res.status);
         }
       });
+    setTimeout(() => {
+      setShowMessage(!showMessage);
+    }, 2000);
   }
 
   function handleDel() {
@@ -76,7 +79,6 @@ function CourseSet() {
       .then((res) => {
         if (res.status === 204) {
           setShowMessage(!showMessage);
-          setAlertMessage(` excluído com sucesso!`);
         }
       })
       .catch((err) => console.log(err.status));
@@ -130,8 +132,7 @@ function CourseSet() {
         >
           <u>
             <b>{putCourse.title}</b>
-          </u>{" "}
-          {alertMessage}
+          </u>
         </Alert>
       </div>
 
@@ -181,7 +182,13 @@ function CourseSet() {
                       aria-describedby="basic-addon1"
                     />
                   </InputGroup>
-                  <Form.Control type="submit" />
+                  <Button
+                    as="input"
+                    type="submit"
+                    variant="warning"
+                    size="sm"
+                    value="Salvar informações"
+                  />
                 </Form>
                 <div className="d-gid gap-2">
                   <InputGroup className="mb-3">
