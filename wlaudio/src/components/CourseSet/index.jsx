@@ -5,29 +5,35 @@ import {
   Form,
   InputGroup,
   Modal,
-  ModalHeader,
   Alert,
   Toast,
-  ToastBody,
-  ToastContainer,
 } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router";
-import { Container, Navigator, ToastField } from "./styles";
+import {
+  Container,
+  Navigator,
+  ToastField,
+  CreateFeed,
+  ConfirmLayout,
+  FeedLayout,
+  RangeContainer,
+} from "./styles";
 import returnbtn from "../../assets/returnbtn.svg";
 import axios from "axios";
+import RangeSlider from "react-bootstrap-range-slider";
 
 function CourseSet() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [course, setCourse] = useState({});
-  const [show, setShow] = useState(false);
+  const [rating, setRating] = useState({});
+  const [deleteShow, setDeleteshow] = useState(false);
   const [putCourse, setPutcourse] = useState({});
   const [disabledurl, setDisabledurl] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
-  const [alertMessage, setAlertMessage] = useState(
-    "Curso alterado com sucesso!"
-  );
+  const [createShow, setCreateshow] = useState(false);
   const [disabledname, setDisabledname] = useState(true);
+  const [rangeValue, setRangeValue] = useState(0);
 
   useEffect(() => {
     const getdata = async () => {
@@ -43,18 +49,6 @@ function CourseSet() {
     return () => {};
   }, [id]);
 
-  const toggleShow = () => {
-    setShow(!show);
-  };
-
-  const toggledisabledname = () => {
-    setDisabledname(!disabledname);
-  };
-
-  const toggledisabledurl = () => {
-    setDisabledurl(!disabledurl);
-  };
-
   function HandlePut(e) {
     e.preventDefault();
 
@@ -66,13 +60,10 @@ function CourseSet() {
           setShowMessage(true);
         }
       });
-    setTimeout(() => {
-      setShowMessage(!showMessage);
-    }, 2000);
   }
 
   function handleDel() {
-    setShow(!show);
+    setDeleteshow(!deleteShow);
 
     axios
       .delete(`http://localhost:8000/api/v2/courses/${id}/`)
@@ -97,6 +88,20 @@ function CourseSet() {
     console.log(putCourse);
   }
 
+  function handleRating(e) {
+    const { name, value } = e.target;
+
+    setRating((course) => {
+      return { ...course, id: course.id, course: course.title, [name]: value };
+    });
+  }
+
+  function showRating() {
+    axios
+      .put(`http://localhost:8000/api/v2/ratings/${id}`, rating)
+      .then((res) => console.log(res.status));
+  }
+
   return (
     <Container>
       <Navigator>
@@ -107,18 +112,23 @@ function CourseSet() {
         />
       </Navigator>
 
-      <div>
-        <Modal show={show} onHide={toggleShow}>
+      <div id="confirm_delete">
+        <Modal show={deleteShow} onHide={() => setDeleteshow(!deleteShow)}>
           <Modal.Header closeButton>
-            <Modal.Title>Deseja apagar esse curso?</Modal.Title>
+            <Modal.Title>Deseja apagar esse feedback?</Modal.Title>
           </Modal.Header>
-          <Modal.Body style={{ display: "flex" }}>
-            <Button variant="warning" onClick={() => setShow(!show)}>
-              Cancelar
-            </Button>
-            <Button onClick={handleDel} variant="danger">
-              Confirmar
-            </Button>
+          <Modal.Body /* style={{ display: "flex" }} */>
+            <ConfirmLayout>
+              <Button
+                variant="warning"
+                onClick={() => setDeleteshow(!deleteShow)}
+              >
+                Cancelar
+              </Button>
+              <Button onClick={handleDel} variant="danger">
+                Confirmar
+              </Button>
+            </ConfirmLayout>
           </Modal.Body>
         </Modal>
       </div>
@@ -130,11 +140,83 @@ function CourseSet() {
           dismissible
           onClose={() => setShowMessage(!showMessage)}
         >
-          <u>
-            <b>{putCourse.title}</b>
-          </u>
+          <b>Usuário editado com sucesso</b>
         </Alert>
       </div>
+
+      <CreateFeed>
+        <Modal show={createShow} onHide={() => setCreateshow(!createShow)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Criar feedback de colaborador</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <FeedLayout>
+              <Form>
+                <Form.Group className="mb-2">
+                  <Form.Label>Nome</Form.Label>
+                  <Form.Control
+                    name="name"
+                    type="Text"
+                    onChange={handleRating}
+                    defaultValue={rating.name}
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-2">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    name="email"
+                    onChange={handleRating}
+                    defaultValue={rating.email}
+                  />
+                  <Form.Label>Avaliação</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    name="comment"
+                    onChange={handleRating}
+                    defaultValue={rating.comment}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-2">
+                  <Form.Label>Nota Média</Form.Label>
+                  <RangeContainer>
+                    <RangeSlider
+                      onChange={handleRating}
+                      size="lg"
+                      defaultValue={""}
+                      min={0}
+                      max={5}
+                      name="rating"
+                    />
+                    <Form.Control
+                      type="number"
+                      size="lg"
+                      defaultValue={rating}
+                      readOnly
+                    />
+                  </RangeContainer>
+                </Form.Group>
+              </Form>
+            </FeedLayout>
+            <ConfirmLayout>
+              <Button
+                variant="warning"
+                onClick={() => setCreateshow(!createShow)}
+              >
+                Cancelar
+              </Button>
+              <Button
+                as="input"
+                type="submit"
+                value="Criar feedback"
+                onClick={showRating}
+              />
+            </ConfirmLayout>
+          </Modal.Body>
+        </Modal>
+      </CreateFeed>
 
       <Card style={{ maxWidth: "1000px" }}>
         <Card.Header className="mt-2">
@@ -148,7 +230,7 @@ function CourseSet() {
                 <Form onSubmit={HandlePut}>
                   <InputGroup className="mb-3">
                     <Button
-                      onClick={toggledisabledname}
+                      onClick={() => setDisabledname(!disabledname)}
                       variant="outline-danger"
                       id="button-addon1"
                     >
@@ -166,7 +248,7 @@ function CourseSet() {
                   </InputGroup>
                   <InputGroup className="mb-3">
                     <Button
-                      onClick={toggledisabledurl}
+                      onClick={() => setDisabledurl(!disabledurl)}
                       variant="outline-danger"
                       id="button-addon1"
                     >
@@ -191,23 +273,20 @@ function CourseSet() {
                   />
                 </Form>
                 <div className="d-gid gap-2">
-                  <InputGroup className="mb-3">
-                    <ToastField>
-                      {course.ratings
-                        ? course.ratings.map((item) => (
-                            <Toast style={{ width: "100%" }}>
-                              <Toast.Header closeButton={false}>
-                                <small>
-                                  {item.rating} - <strong>{item.name}</strong>
-                                </small>
-                                {/*  <strong>{item.name}</strong> */}
-                              </Toast.Header>
-                              <Toast.Body>{item.comment}</Toast.Body>
-                            </Toast>
-                          ))
-                        : ""}
-                    </ToastField>
-                  </InputGroup>
+                  <ToastField>
+                    {course.ratings
+                      ? course.ratings.map((item) => (
+                          <Toast key={item.id} style={{ width: "100%" }}>
+                            <Toast.Header closeButton={false}>
+                              <small>
+                                {item.rating} - <strong>{item.name}</strong>
+                              </small>
+                            </Toast.Header>
+                            <Toast.Body>{item.comment}</Toast.Body>
+                          </Toast>
+                        ))
+                      : ""}
+                  </ToastField>
                 </div>
               </>
             ) : (
@@ -215,14 +294,17 @@ function CourseSet() {
             )}
           </div>
 
-          <div className="d-grid gap-2">
-            <Button onClick={HandlePut} variant="success">
-              Salvar
+          <CreateFeed>
+            <Button
+              variant="outline-success"
+              onClick={() => setCreateshow(!createShow)}
+            >
+              Criar feedback
             </Button>
-            <Button onClick={() => setShow(!show)} variant="danger">
-              Apagar
+            <Button onClick={() => setDeleteshow(!deleteShow)} variant="danger">
+              Apagar feedback
             </Button>
-          </div>
+          </CreateFeed>
         </Card.Body>
       </Card>
     </Container>

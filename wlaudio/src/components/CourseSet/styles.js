@@ -29,3 +29,30 @@ export const Navigator = styled.div`
   width: 100%;
   margin-bottom: 30px;
 `;
+
+export const CreateFeed = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+`;
+
+export const ConfirmLayout = styled.div`
+  display: flex;
+  justify-content: start;
+  gap: 20px;
+`;
+
+export const FeedLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+`;
+
+export const RangeContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`;
