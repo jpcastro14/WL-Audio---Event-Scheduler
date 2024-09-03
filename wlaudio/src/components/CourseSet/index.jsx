@@ -79,12 +79,13 @@ function CourseSet() {
     }, 4000);
   }
 
-  function handleType(e) {
+  function handleType(e, course) {
     const { name, value } = e.target;
 
     setPutcourse((course) => {
       return { ...course, [name]: value };
     });
+
     console.log(putCourse);
   }
 
@@ -92,14 +93,17 @@ function CourseSet() {
     const { name, value } = e.target;
 
     setRating((course) => {
-      return { ...course, id: course.id, course: course.title, [name]: value };
+      return { ...course, course: course.id, [name]: value };
     });
   }
 
   function showRating() {
+    const sendRating = Object.assign(rating, { course: course.id });
     axios
-      .put(`http://localhost:8000/api/v2/ratings/${id}`, rating)
+      .post(`http://localhost:8000/api/v2/ratings/`, sendRating)
       .then((res) => console.log(res.status));
+
+    console.log(sendRating);
   }
 
   return (
@@ -211,7 +215,7 @@ function CourseSet() {
                 as="input"
                 type="submit"
                 value="Criar feedback"
-                onClick={showRating}
+                onClick={() => showRating(course)}
               />
             </ConfirmLayout>
           </Modal.Body>
