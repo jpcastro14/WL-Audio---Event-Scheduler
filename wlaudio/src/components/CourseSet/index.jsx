@@ -99,9 +99,7 @@ function CourseSet() {
 
   function showRating() {
     const sendRating = Object.assign(rating, { course: course.id });
-    axios
-      .post(`http://localhost:8000/api/v2/ratings/`, sendRating)
-      .then((res) => console.log(res.status));
+    axios.post(`http://localhost:8000/api/v2/ratings/`, sendRating);
 
     console.log(sendRating);
   }
