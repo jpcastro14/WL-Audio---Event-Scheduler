@@ -97,11 +97,23 @@ function CourseSet() {
     });
   }
 
-  function showRating() {
+  function showRating(e, id) {
+    e.preventDefault();
+
     const sendRating = Object.assign(rating, { course: course.id });
-    axios.post(`http://localhost:8000/api/v2/ratings/`, sendRating);
+    axios
+      .post(`http://localhost:8000/api/v2/ratings/`, sendRating)
+      .then((res) => {
+        if (res.status == 201) {
+          console.log(res.status, "Feedback criado com sucesso");
+        }
+      })
+      .catch((err) => console.log(`Erro ocorrido ${err.status}`));
 
     console.log(sendRating);
+    setTimeout(() => {
+      navigate(`/courseset/${id}`);
+    }, 3000);
   }
 
   return (
@@ -153,7 +165,7 @@ function CourseSet() {
           </Modal.Header>
           <Modal.Body>
             <FeedLayout>
-              <Form>
+              <Form onSubmit={showRating}>
                 <Form.Group className="mb-2">
                   <Form.Label>Nome</Form.Label>
                   <Form.Control
@@ -184,38 +196,27 @@ function CourseSet() {
                 <Form.Group className="mb-2">
                   <Form.Label>Nota Média</Form.Label>
                   <RangeContainer>
-                    <RangeSlider
+                    <Form.Control
                       onChange={handleRating}
                       size="lg"
-                      defaultValue={""}
+                      name="rating"
+                      type="number"
                       min={0}
                       max={5}
-                      name="rating"
-                    />
-                    <Form.Control
-                      type="number"
-                      size="lg"
-                      defaultValue={rating}
-                      readOnly
                     />
                   </RangeContainer>
                 </Form.Group>
+                <ConfirmLayout>
+                  <Button
+                    variant="warning"
+                    onClick={() => setCreateshow(!createShow)}
+                  >
+                    Cancelar
+                  </Button>
+                  <Button as="input" type="submit" value="Criar feedback" />
+                </ConfirmLayout>
               </Form>
             </FeedLayout>
-            <ConfirmLayout>
-              <Button
-                variant="warning"
-                onClick={() => setCreateshow(!createShow)}
-              >
-                Cancelar
-              </Button>
-              <Button
-                as="input"
-                type="submit"
-                value="Criar feedback"
-                onClick={() => showRating(course)}
-              />
-            </ConfirmLayout>
           </Modal.Body>
         </Modal>
       </CreateFeed>
