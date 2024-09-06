@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   background-color: #4287f5;
   flex-wrap: wrap;
-  padding: 20px 20px 20px 20px;
+  padding: 20px 20px 40px 20px;
   justify-content: center;
   align-items: center;
   img {
@@ -34,6 +34,7 @@ export const CreateFeed = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-around;
+  gap: 30px;
 `;
 
 export const ConfirmLayout = styled.div`

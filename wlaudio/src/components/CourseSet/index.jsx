@@ -20,7 +20,6 @@ import {
 } from "./styles";
 import returnbtn from "../../assets/returnbtn.svg";
 import axios from "axios";
-import RangeSlider from "react-bootstrap-range-slider";
 
 function CourseSet() {
   const navigate = useNavigate();
@@ -28,12 +27,10 @@ function CourseSet() {
   const [course, setCourse] = useState({});
   const [rating, setRating] = useState({});
   const [deleteShow, setDeleteshow] = useState(false);
-  const [putCourse, setPutcourse] = useState({});
-  const [disabledurl, setDisabledurl] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
   const [createShow, setCreateshow] = useState(false);
-  const [disabledname, setDisabledname] = useState(true);
-  const [rangeValue, setRangeValue] = useState(0);
+  const [alertMessage, setalertMessage] = useState("");
+  const [alertClass, setalertClass] = useState("primary");
 
   useEffect(() => {
     const getdata = async () => {
@@ -48,19 +45,6 @@ function CourseSet() {
 
     return () => {};
   }, [id]);
-
-  function HandlePut(e) {
-    e.preventDefault();
-
-    axios
-      .put(`http://localhost:8000/api/v2/courses/${id}/`, putCourse)
-      .catch((err) => console.log(err.status))
-      .then((res) => {
-        if (res.status === 200) {
-          setShowMessage(true);
-        }
-      });
-  }
 
   function handleDel() {
     setDeleteshow(!deleteShow);
@@ -79,16 +63,6 @@ function CourseSet() {
     }, 4000);
   }
 
-  function handleType(e, course) {
-    const { name, value } = e.target;
-
-    setPutcourse((course) => {
-      return { ...course, [name]: value };
-    });
-
-    console.log(putCourse);
-  }
-
   function handleRating(e) {
     const { name, value } = e.target;
 
@@ -97,7 +71,7 @@ function CourseSet() {
     });
   }
 
-  function showRating(e, id) {
+  function showRating(e) {
     e.preventDefault();
 
     const sendRating = Object.assign(rating, { course: course.id });
@@ -106,14 +80,18 @@ function CourseSet() {
       .then((res) => {
         if (res.status == 201) {
           console.log(res.status, "Feedback criado com sucesso");
+          setShowMessage(!showMessage);
+          setalertClass("success");
+          setalertMessage("Feedback criado com sucesso");
         }
       })
-      .catch((err) => console.log(`Erro ocorrido ${err.status}`));
-
-    console.log(sendRating);
-    setTimeout(() => {
-      navigate(`/courseset/${id}`);
-    }, 3000);
+      .catch(
+        (err) => console.log(`Erro ocorrido ${err}`),
+        setCreateshow(!createShow),
+        setShowMessage(!showMessage),
+        setalertMessage("Erro ao criar feedback"),
+        setalertClass("danger")
+      );
   }
 
   return (
@@ -131,7 +109,7 @@ function CourseSet() {
           <Modal.Header closeButton>
             <Modal.Title>Deseja apagar esse feedback?</Modal.Title>
           </Modal.Header>
-          <Modal.Body /* style={{ display: "flex" }} */>
+          <Modal.Body>
             <ConfirmLayout>
               <Button
                 variant="warning"
@@ -150,11 +128,11 @@ function CourseSet() {
       <div id="alert-container">
         <Alert
           show={showMessage}
-          variant="primary"
+          variant={alertClass}
           dismissible
           onClose={() => setShowMessage(!showMessage)}
         >
-          <b>Usuário editado com sucesso</b>
+          <b>{alertMessage}</b>
         </Alert>
       </div>
 
@@ -226,71 +204,42 @@ function CourseSet() {
           <Form.Label>Feedbacks do colaborador</Form.Label>
         </Card.Header>
         <Card.Body>
-          <Card.Title>#{course.id}</Card.Title>
           <div className="d-grid gap-2">
             {course ? (
               <>
-                <Form onSubmit={HandlePut}>
+                <Form>
+                  <Form.Label>Colaborador</Form.Label>
                   <InputGroup className="mb-3">
-                    <Button
-                      onClick={() => setDisabledname(!disabledname)}
-                      variant="outline-danger"
-                      id="button-addon1"
-                    >
-                      Editar
-                    </Button>
-                    <Form.Control
-                      onSubmit={HandlePut}
-                      onChange={handleType}
-                      disabled={disabledname}
-                      defaultValue={course.title}
-                      type="text"
-                      name="title"
-                      aria-describedby="basic-addon1"
-                    />
+                    <Form.Control disabled defaultValue={course.title} />
                   </InputGroup>
+                  <Form.Label>Setor</Form.Label>
                   <InputGroup className="mb-3">
-                    <Button
-                      onClick={() => setDisabledurl(!disabledurl)}
-                      variant="outline-danger"
-                      id="button-addon1"
-                    >
-                      Editar
-                    </Button>
-                    <Form.Control
-                      onSubmit={HandlePut}
-                      onChange={handleType}
-                      disabled={disabledurl}
-                      defaultValue={course.url}
-                      type="text"
-                      name="url"
-                      aria-describedby="basic-addon1"
-                    />
+                    <Form.Control disabled defaultValue={course.url} />
                   </InputGroup>
-                  <Button
-                    as="input"
-                    type="submit"
-                    variant="warning"
-                    size="sm"
-                    value="Salvar informações"
-                  />
+                  <hr />
+                  {course.ratings ? (
+                    <cite>
+                      <u>{course.ratings.length} - Avaliações</u>
+                    </cite>
+                  ) : (
+                    ""
+                  )}
                 </Form>
-                <div className="d-gid gap-2">
-                  <ToastField>
-                    {course.ratings
-                      ? course.ratings.map((item) => (
-                          <Toast key={item.id} style={{ width: "100%" }}>
-                            <Toast.Header closeButton={false}>
-                              <small>
-                                {item.rating} - <strong>{item.name}</strong>
-                              </small>
-                            </Toast.Header>
-                            <Toast.Body>{item.comment}</Toast.Body>
-                          </Toast>
-                        ))
-                      : ""}
-                  </ToastField>
-                </div>
+
+                <ToastField>
+                  {course.ratings
+                    ? course.ratings.map((item) => (
+                        <Toast key={item.id} style={{ width: "100%" }}>
+                          <Toast.Header closeButton={false}>
+                            <b>
+                              {item.rating} - <strong>{item.name}</strong>
+                            </b>
+                          </Toast.Header>
+                          <Toast.Body>{item.comment}</Toast.Body>
+                        </Toast>
+                      ))
+                    : ""}
+                </ToastField>
               </>
             ) : (
               <p>Sem dados</p>
@@ -302,9 +251,12 @@ function CourseSet() {
               variant="outline-success"
               onClick={() => setCreateshow(!createShow)}
             >
-              Criar feedback
+              Criar Avaliação
             </Button>
-            <Button onClick={() => setDeleteshow(!deleteShow)} variant="danger">
+            <Button
+              onClick={() => setDeleteshow(!deleteShow)}
+              variant="outline-danger"
+            >
               Apagar feedback
             </Button>
           </CreateFeed>
