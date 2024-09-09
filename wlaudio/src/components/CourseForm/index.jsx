@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { A, Container } from "./styles";
+import { A, Container, HeaderDiv } from "./styles";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
@@ -31,11 +31,12 @@ function CourseForm() {
 
     axios
       .post("http://localhost:8000/api/v2/courses/", postCourse)
-      .then((res) => console.log(res));
-
-    console.log(postCourse);
-    Setshow(true);
-    setMessage("Curso cadastrado com sucesso!");
+      .catch((err) => console.log(err))
+      .then(
+        (res) => console.log(res),
+        Setshow(true),
+        setMessage("Curso cadastrado com sucesso!")
+      );
 
     setTimeout(() => {
       Setshow(false);
@@ -54,47 +55,35 @@ function CourseForm() {
 
   return (
     <Container>
-      {/* <form onSubmit={handlePost}>
-        <input
-        type="text"
-        name="title"
-        value={postCourse.title}
-        onChange={handleType}
-        />
-        <input
-        type="text"
-        name="url"
-        value={postCourse.url}
-        onChange={handleType}
-        />
-        <input type="submit" />
-        </form> */}
+      <HeaderDiv>
+        <h2>Informar colaborador</h2>
+      </HeaderDiv>
       <Form onSubmit={handlePost}>
         <Alert show={show}>{message}</Alert>
         <Row>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Nome do curso</Form.Label>
+              <Form.Label>Nome do Colaborador</Form.Label>
               <Form.Control
                 type="text"
                 defaultValue={courses.title}
                 onChange={handleType}
                 name="title"
               />
-              <Form.Text>Digite aqui o nome do curso</Form.Text>
+              <Form.Text>Digite aqui o nome do colaborador</Form.Text>
             </Form.Group>
           </Col>
 
           <Col>
             <Form.Group>
-              <Form.Label>Endereço do curso</Form.Label>
+              <Form.Label>Setor do colaborador</Form.Label>
               <Form.Control
                 type="text"
                 defaultValue={courses.url}
                 onChange={handleType}
                 name="url"
               />
-              <Form.Text>Digite aqui o nome do curso</Form.Text>
+              <Form.Text>Digite aqui o nome do setor</Form.Text>
             </Form.Group>
           </Col>
           <Button variant="warning" onClick={handlePost}>
