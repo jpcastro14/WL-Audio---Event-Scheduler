@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { CardContainer, Container, TopNav, InfoContainer } from "./styles";
+import {
+  CardContainer,
+  Container,
+  TopNav,
+  InfoContainer,
+  HeadCard,
+  CardHeader,
+} from "./styles";
 import { Card, Col, Button } from "react-bootstrap";
 import ConnButton from "../ConnButton";
 import axios from "axios";
 
 function CourseList() {
   const [course, Setcourse] = useState([]);
+
+  const [mainstyle, setMainstyle] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
@@ -36,13 +45,26 @@ function CourseList() {
         <Col>
           <div className="d-grid gap2">
             <CardContainer>
-              <Card style={{ width: "100%" }}>
-                <Card.Body>Colaboradores sob supervisão</Card.Body>
-              </Card>
-
+              <HeadCard primary={mainstyle}>
+                <span>Colaboradores sob supervisão</span>
+                <Button
+                  variant="outline-primary"
+                  onClick={() => setMainstyle(!mainstyle)}
+                >
+                  ?
+                </Button>
+                <hr />
+                <div>
+                  <p>
+                    Aqui ficam listados todos os colaboradores sob sua
+                    supervisão, ou que estão atuando em um setor de sua
+                    responsabilidade
+                  </p>
+                </div>
+              </HeadCard>
               {course.map((item) => (
                 <Card key={item.title} style={{ width: "100%" }}>
-                  <Card.Header>{item.title}</Card.Header>
+                  <CardHeader>{item.title}</CardHeader>
                   <Card.Body>
                     <Card.Text>{item.url}</Card.Text>
                     <div className="d-grid gap-2">
