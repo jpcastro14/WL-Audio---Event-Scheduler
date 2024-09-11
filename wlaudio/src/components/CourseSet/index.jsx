@@ -54,13 +54,13 @@ function CourseSet() {
       .then((res) => {
         if (res.status === 204) {
           setShowMessage(!showMessage);
+
+          setTimeout(() => {
+            navigate("/courselist/");
+          }, 3000);
         }
       })
       .catch((err) => console.log(err.status));
-
-    setTimeout(() => {
-      navigate("/courselist");
-    }, 4000);
   }
 
   function handleRating(e) {
