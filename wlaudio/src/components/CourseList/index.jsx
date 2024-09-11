@@ -7,6 +7,7 @@ import {
   HeadCard,
   CardHeader,
 } from "./styles";
+import { useNavigate } from "react-router";
 import { Card, Col, Button } from "react-bootstrap";
 import ConnButton from "../ConnButton";
 import axios from "axios";
@@ -15,6 +16,8 @@ function CourseList() {
   const [course, Setcourse] = useState([]);
 
   const [mainstyle, setMainstyle] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getData = async () => {
@@ -40,6 +43,9 @@ function CourseList() {
             <h2>Claudio Cesário</h2>
             <h6>Gestor de desenvolvimento</h6>
             <span>CRP - Frontlines - 158510</span>
+            <Button onClick={() => navigate("/courseform")} variant="warning">
+              Novo colaborador
+            </Button>
           </InfoContainer>
         </Col>
         <Col>
@@ -62,6 +68,11 @@ function CourseList() {
                   </p>
                 </div>
               </HeadCard>
+              {course.length == 0 ? (
+                <HeadCard>Sem colaboradores sob supervisão</HeadCard>
+              ) : (
+                ""
+              )}
               {course.map((item) => (
                 <Card key={item.title} style={{ width: "100%" }}>
                   <CardHeader>{item.title}</CardHeader>

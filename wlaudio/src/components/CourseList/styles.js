@@ -41,6 +41,10 @@ export const InfoContainer = styled.div`
   border-right: 3px solid white;
   background-color: rgba(255, 255, 255, 0.15);
 
+  button {
+    margin-top: 10px;
+  }
+
   span {
     font-size: 14px;
   }
